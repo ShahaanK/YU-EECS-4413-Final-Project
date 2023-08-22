@@ -14,13 +14,13 @@ public interface DAO {
 	
 	public List<Item> findAllBottoms();
 	
-	public List<Item> findByBrand();
+	public List<Item> findByBrand(String name); //S
 		
 	public List<Item> searchKeyword(String keyWord);
     
-	public List<Item> getSortHiLo(boolean ascending);
+	public List<Item> getSortHiLo(boolean ascending); //S
     
-    public List<Item> getSortLoHi(boolean decesending);
+    public List<Item> getSortLoHi(boolean decesending); //S
 
 	public List<Item> getSortAZ(boolean ascending);
 
