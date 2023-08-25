@@ -8,7 +8,11 @@
 </head>
 <body>
 
-<form action=""></form>
+
+<form action="./inputCheck.jsp">
+<button type="submit">Re-calculate</button>
+</form>
+
 <p>Hello!</p>
 
 
