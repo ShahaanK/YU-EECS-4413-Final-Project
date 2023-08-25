@@ -319,6 +319,7 @@ public class DAOImpl implements DAO {
 	        ex.printStackTrace(); 
 	    } finally {
 	        closeConnection(connection); 
+	    }
 
 	    return result;
 	}
