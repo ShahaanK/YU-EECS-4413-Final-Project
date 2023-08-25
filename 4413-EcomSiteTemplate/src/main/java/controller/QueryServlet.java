@@ -17,7 +17,8 @@ public class QueryServlet extends HttpServlet {
     /**
      * Default constructor. 
      */
-    public QueryServlet() {
+	public QueryServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
