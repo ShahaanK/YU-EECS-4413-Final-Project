@@ -297,7 +297,7 @@ public class DAOImpl implements DAO {
 
 	    Connection connection = null;
 	    try {
-	        connection = getConnection(); // Replace with your connection logic
+	        connection = getConnection(); 
 	        PreparedStatement statement = connection.prepareStatement(sql);
 	        ResultSet resultSet = statement.executeQuery(sql);
 
@@ -316,10 +316,9 @@ public class DAOImpl implements DAO {
 	            result.add(item);
 	        }
 	    } catch (SQLException ex) {
-	        ex.printStackTrace(); // Handle or log the exception as needed
+	        ex.printStackTrace(); 
 	    } finally {
-	        closeConnection(connection); // Replace with your connection management
-	    }
+	        closeConnection(connection); 
 
 	    return result;
 	}
