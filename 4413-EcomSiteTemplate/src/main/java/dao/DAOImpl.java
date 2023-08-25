@@ -43,8 +43,7 @@ public class DAOImpl implements DAO {
 		List<Item> result = new ArrayList<Item>();
 
 		// join 3 tables to get needed info
-		String sql = "select * from book inner join author on book.id = author.book_id "
-				+ "inner join category on book.category_id = category.id";
+		String sql = "SELECT * from Item";
 
 		Connection connection = null;
 		try {
@@ -52,8 +51,25 @@ public class DAOImpl implements DAO {
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-
-
+				
+				ProductOrderItem prod = new ProductOrderItem();
+				Item item = new Item();
+				
+				prod.setItemID(resultSet.getString("productID"));
+				
+				item.setProductID(resultSet.getString("productID"));
+				item.setProductName(resultSet.getString("productName"));
+				item.setColour(resultSet.getString("colour"));
+				item.setCategory(resultSet.getString("category"));
+				item.setBrand(resultSet.getString("category"));
+				item.setQuantity(resultSet.getInt("category"));
+				item.setPrice(resultSet.getDouble("price"));
+				item.setImage(resultSet.getString("image"));
+				
+				
+				result.add(item);
+				
+				
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
