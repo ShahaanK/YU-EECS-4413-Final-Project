@@ -3,38 +3,60 @@
 
  
 
-<!DOCTYPE html >
-
- 
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="css/bookstore.css" type="text/css" />
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-<script src="js/bookstore.js"></script>
+    <meta charset="ISO-8859-1">
+    <title>Yet An e-Bookshop</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <!-- Add any additional CSS or JavaScript libraries here -->
 </head>
 <body>
-	<div id="centered">
-
-		<span class="label" style="margin-left: 15px;">Featured Books</span>
-		<table>
-			<tr>
-				<td><span class="tooltip_img1"><img
-						src="${initParam.imageURL}/A9781430248064-small_3.png" /></span></td>
-				<td><img src="${initParam.imageURL}/A9781430239963-small_1.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430247647-small_3.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430231684-small_8.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430249474-small_1.png" /></td>
-			</tr>
-			<tr>
-				<td><img src="${initParam.imageURL}/A9781430248187-small_1.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430243779-small_2.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430247401-small_1.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430246596-small_1.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430257349-small_1.png" /></td>
-			</tr>
-		</table>
-	</div>
+    <h2>Yet An e-Bookshop</h2>
+    <form method="get" action="QueryServlet">
+        <div class="frame-16">
+            <div class="rectangle-190"></div>
+            <div class="rectangle-191"></div>
+            <div class="rectangle-192"></div>
+            <div class="rectangle-193"></div>
+            <div class="rectangle-194"></div>
+            <div class="rectangle-195"></div>
+            <div class="rectangle-196"></div>
+            <div class="home">HOME</div>
+            <div class="sort-by">SORT BY:</div>
+            <div class="all-clothes">ALL CLOTHES</div>
+            <div class="brands">BRANDS</div>
+            <div class="rectangle-197"></div>
+            <div class="search">SEARCH</div>
+            <div class="rectangle-198"></div>
+            <div class="">?</div>
+            <div class="rectangle-199"></div>
+            <div class="search2">Search</div>
+            <img class="image-44" src="image-44.png" />
+            <img class="image-45" src="image-45.png" />
+            <img class="image-46" src="image-46.png" />
+            <img class="image-47" src="image-47.png" />
+            <img class="image-48" src="image-48.png" />
+            <img class="image-49" src="image-49.png" />
+            <div class="price-high-to-low">PRICE: HIGH TO LOW</div>
+            <div class="price-low-to-high">PRICE: LOW TO HIGH</div>
+            <div class="a-z">A-Z</div>
+            <div class="admin">ADMIN</div>
+            <div class="register">REGISTER</div>
+            <div class="sign-in">SIGN IN</div>
+            <svg class="rectangle-1952" width="55" height="45" viewBox="0 0 55 45" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0H55V45H0V0Z" fill="#EFEDED" />
+            </svg>
+            <svg class="rectangle-200" width="55" height="45" viewBox="0 0 55 45" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0H55V45H0V0Z" fill="#EFEDED" />
+            </svg>
+            <svg class="rectangle-201" width="55" height="45" viewBox="0 0 55 45" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0H55V45H0V0Z" fill="#EFEDED" />
+            </svg>
+        </div>
+    </form>
 </body>
 </html>
