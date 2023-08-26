@@ -49,9 +49,8 @@
             <button type="submit" class="continue-button">Continue Shopping</button>
         </form>
         
-        <form action="finalCheckout.jsp" method="get">
-            <button type="submit" class="checkout-button">Proceed to Checkout</button>
-        </form>
+        <!-- Link to the payment page -->
+        <a href="payment.jsp" class="checkout-button">Proceed to Checkout</a>
     </div>
 </body>
 </html>

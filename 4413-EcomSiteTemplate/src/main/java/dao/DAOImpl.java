@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ public class DAOImpl implements DAO {
 	// complete this method
 	private Connection getConnection() throws SQLException {
 		String shahaan = "C:\\Users\\shaha\\OneDrive\\Desktop\\4413 - E-Comm\\Project\\4413DB.db";
-		String tracy = "/4413-EcomSiteTemplate/src/main/webapp/DB/4413DB (1).db";
+		String tracy = "/Users" + File.separator + "miaonya" + File.separator + "Desktop" + File.separator + "4413DB.db";
 		String mediya = "";
 		return DriverManager.getConnection("jdbc:sqlite:" + tracy);//replace the name with yours's
 

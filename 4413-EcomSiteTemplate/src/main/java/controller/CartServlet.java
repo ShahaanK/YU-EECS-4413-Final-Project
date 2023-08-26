@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Cart;
-import model.Item;
 
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
@@ -22,7 +19,6 @@ public class CartServlet extends HttpServlet {
 
         if (action != null) {
             if (action.equals("add")) {
-                // Get item details from request and add it to the cart
                 String productID = request.getParameter("productID");
                 String productName = request.getParameter("productName");
                 String colour = request.getParameter("colour");
@@ -32,34 +28,47 @@ public class CartServlet extends HttpServlet {
                 String category = request.getParameter("category");
                 String brand = request.getParameter("brand");
 
-                Cart cart = (Cart) request.getSession().getAttribute("cart");
-                if (cart == null) {
-                    cart = new Cart();
-                    request.getSession().setAttribute("cart", cart);
-                }
-
+                Cart cart = getOrCreateCart(request);
                 cart.add(productID, productName, colour, quantity, price, image, category, brand);
             } else if (action.equals("update")) {
-                // Update the quantity of an item in the cart
                 String productID = request.getParameter("productID");
                 int newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
 
-                Cart cart = (Cart) request.getSession().getAttribute("cart");
+                Cart cart = getCart(request);
                 if (cart != null) {
                     cart.update(productID, newQuantity);
                 }
             } else if (action.equals("remove")) {
-                // Remove an item from the cart
                 String productID = request.getParameter("productID");
 
-                Cart cart = (Cart) request.getSession().getAttribute("cart");
+                Cart cart = getCart(request);
                 if (cart != null) {
                     cart.remove(productID);
                 }
             }
         }
 
-        // Forward to the cart JSP page to display the cart
         request.getRequestDispatcher("cart.jsp").forward(request, response);
+    }
+/*  getOrCreateCart(HttpServletRequest request): This method checks if a Cart object exists in the session. 
+ * If it does, it returns the existing Cart object. 
+ * If it doesn't exist, it creates a new Cart object, sets it in the session, and then returns it. 
+ * This method ensures that you always have a valid Cart object to work with.
+ */
+
+    private Cart getOrCreateCart(HttpServletRequest request) {
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        if (cart == null) {
+            cart = new Cart();
+            request.getSession().setAttribute("cart", cart);
+        }
+        return cart;
+    }
+    /*getCart(HttpServletRequest request): This method simply retrieves the Cart object from the session. 
+     * It doesn't create a new Cart object if it doesn't exist. 
+     * This is useful when you want to access the existing Cart object without modifying it.
+     */
+    private Cart getCart(HttpServletRequest request) {
+        return (Cart) request.getSession().getAttribute("cart");
     }
 }
