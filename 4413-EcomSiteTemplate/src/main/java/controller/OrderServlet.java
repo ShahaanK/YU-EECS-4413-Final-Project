@@ -58,6 +58,6 @@ public class OrderServlet extends HttpServlet {
         cart.clear();
 
         request.setAttribute("order", order);
-        request.getRequestDispatcher("orderConfirmation.jsp").forward(request, response);
+        request.getRequestDispatcher("finalCheckout.jsp").forward(request, response);
     }
 }
