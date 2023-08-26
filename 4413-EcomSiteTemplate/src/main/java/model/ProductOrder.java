@@ -4,7 +4,7 @@ public class ProductOrder {
     private int id;
     private int customerID;
     private String dateOfPurchase;
-    private int totalPrice;
+    private double totalPrice;
 
     // Getters and setters for all fields
 
@@ -32,11 +32,11 @@ public class ProductOrder {
         this.dateOfPurchase = dateOfPurchase;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

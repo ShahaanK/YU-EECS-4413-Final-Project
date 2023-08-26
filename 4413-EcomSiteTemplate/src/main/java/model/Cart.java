@@ -75,4 +75,15 @@ public class Cart {
    public void clear() {
       cart.clear();
    }
+
+   public double calculateTotalPrice() {
+	   // TODO Auto-generated method stub
+	   double totalPrice = 0.0;
+
+	    for (Item item : cart) {
+	        totalPrice += item.getPrice() * item.getQuantity();
+	    }
+
+	    return totalPrice;
+   }
 }
