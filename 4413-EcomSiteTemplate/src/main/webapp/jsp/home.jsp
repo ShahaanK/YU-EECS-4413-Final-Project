@@ -7,12 +7,11 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Yet An e-Bookshop</title>
+    <title>E-Commerce</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <!-- Add any additional CSS or JavaScript libraries here -->
 </head>
 <body>
-    <h2>Yet An e-Bookshop</h2>
     <form method="get" action="QueryServlet">
         <div class="frame-16">
             <div class="rectangle-190"></div>
