@@ -9,7 +9,7 @@
     <meta charset="ISO-8859-1">
     <title>E-Commerce</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <!-- Add any additional CSS or JavaScript libraries here -->
+    
 </head>
 <body>
     <form method="get" action="QueryServlet">
@@ -31,7 +31,8 @@
             <div class="">?</div>
             <div class="rectangle-199"></div>
             <div class="search2">Search</div>
-            <img class="image-44" src="image-44.png" />
+            <!-- gonna need to fix the image later -->
+            <img class="image-44" src="image-44.png" /> 
             <img class="image-45" src="image-45.png" />
             <img class="image-46" src="image-46.png" />
             <img class="image-47" src="image-47.png" />
