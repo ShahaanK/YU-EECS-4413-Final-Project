@@ -400,7 +400,6 @@ public class DAOImpl implements DAO {
 	public List<Item> getImage() {
 	    List<Item> result = new ArrayList<>();
 
-	    // SQL query to sort items by product name (A to Z)
 	    String sql = " ";// for searching and put the image to the web
 
 	    Connection connection = null;
