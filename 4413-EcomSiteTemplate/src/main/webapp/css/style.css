@@ -1,3 +1,52 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+}
+header {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: left;
+    font-size: 36px;
+}
+.header-right {
+    float: right;
+}
+nav {
+    text-align: center;
+    background-color: #333;
+}
+nav a {
+    padding: 14px 20px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+}
+.main-content {
+    margin: 50px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+.main-content form input[type="text"],
+.main-content form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+}
+.main-content form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+}
+.login-button {
+    background-color: #008CBA;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+}
+
+
+
 .frame-16,
 .frame-16 * {
   box-sizing: border-box;
