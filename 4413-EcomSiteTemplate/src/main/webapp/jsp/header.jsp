@@ -8,10 +8,6 @@
     </div>
     <div class="top-buttons">
 
-        <a href="login.jsp">Sign In</a>
-        <a href="register.jsp">Register</a>
-        <a href="admin.jsp">Admin</a>
-
 		<a href="${pageContext.request.contextPath}/jsp/login.jsp">Sign In</a>
         <a href="${pageContext.request.contextPath}/jsp/createAccount.jsp">Register</a>
      <!-- Make it so the Admin moves to login page if it is not logged in-->
