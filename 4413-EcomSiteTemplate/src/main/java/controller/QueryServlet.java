@@ -36,26 +36,16 @@ public class QueryServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String base = "/jsp/"; // Folder linking to jsp location
-		String url = base + "index.jsp"; // for example got to jsp/home.jsp
 		
 		// if statement for if you are going to the home then only make url = index.jsp
 		// else do this: String url = base + "index.jsp"; // for example got to jsp/home.jsp
+		String base = "/jsp/"; // Folder linking to jsp location
+		String url = "index.jsp";
 
-		
-		
 		// If any of these key words are found, send it to a different jsp
 		String action = request.getParameter("action");
         String category = request.getParameter("category");
@@ -68,24 +58,26 @@ public class QueryServlet extends HttpServlet {
                 findAllItems(request, response);
 				url = base + "catelog.jsp"; // We need to show this as a table. Maybe later we will maek
 				// another jsp or sm.
-				
-				
-                //url = base + "listOfItems.jsp";
+
                 break;
 			case "allBrands":
 				findByBrand(request, response, category);
+				url = base + "catelog.jsp";
                 //url = base + "category.jsp?category=" + category;
                 break;
             case "search":
                 searchKeyword(request, response, keyWord);
+                url = base + "catelog.jsp";
                 //url = base + "searchResult.jsp";
                 break;
             case "sortPriceHighToLow":
             	sortItemsByPriceHtL(request, response, true);
+            	url = base + "catelog.jsp";
                 //url = base + "listOfItems.jsp";
                 break;
             case "sortPriceLowToHigh":
             	sortItemsByPriceLtH(request, response, false);
+            	url = base + "catelog.jsp";
                 //url = base + "listOfItems.jsp";
                 break;
             case "sortNameAZ":
@@ -94,15 +86,17 @@ public class QueryServlet extends HttpServlet {
                 break;
             case "sortNameZA":
                 sortItemsByName(request, response, false);
+                url = base + "catelog.jsp";
                 //url = base + "listOfItems.jsp";
                 break;
             case "allTops":
                 findAllTops(request, response);
+                url = base + "catelog.jsp";
                 //url = base + "listOfTops.jsp";
                 break;
             case "allBottoms":
                 findAllBottoms(request, response);
-                url = base + "listOfBottoms.jsp";
+                url = base + "catelog.jsp";
                 break;
 
 			}

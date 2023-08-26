@@ -2,73 +2,73 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Catalog</title>
 </head>
 <body>
- 
+<%--
 <div class="catalog">
-	<form action="QueryServlet" method="post">
-    	<input type="hidden" name="action" value="sortPriceHighToLow">
-        <button type="submit" name="action" value="sortPriceHighToLow">Sort by Price (High to Low)</button>
+    <!-- Sorting options -->
+    <form action="QueryServlet" method="post">
+        <input type="hidden" name="action" value="sortPriceHighToLow">
+        <button type="submit">Sort by Price (High to Low)</button>
     </form>
-	<!-- Add buttons or forms for sorting -->
     <form action="QueryServlet" method="post">
-    	<input type="hidden" name="action" value="sortPriceLowToHigh">
-        <button type="submit" name="action" value="sortPriceLowToHigh">Sort by Price (Low to High)</button>
-    </form> 
-    
+        <input type="hidden" name="action" value="sortPriceLowToHigh">
+        <button type="submit">Sort by Price (Low to High)</button>
+    </form>
     <form action="QueryServlet" method="post">
-    	<input type="hidden" name="action" value="sortNameAZ">
-        <button type="submit" name="action" value="sortNameAZ">Sort by Name (A To Z)</button>
-    </form>      
+        <input type="hidden" name="action" value="sortNameAZ">
+        <button type="submit">Sort by Name (A To Z)</button>
+    </form>
 
-	<!-- Add forms for searching -->
-	<form action="QueryServlet" method="post">
-		<input type="hidden" name="action" value="search">
-		<input type="text" name="keyWord" placeholder="Search...">
-		<button type="submit">Search</button>
-	</form>
+    <!-- Search form -->
+    <form action="QueryServlet" method="post">
+        <input type="hidden" name="action" value="search">
+        <input type="text" name="keyWord" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
 </div>
+--%> 
 
-      <!-- Display the list of items -->
-    <table id="grid">
-        <thead>
+<!-- Display the list of items -->
+<table id="grid">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Color</th>
+            <th>Brand</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="item" items="${itemList}">
             <tr>
-                <th>Product ID</th>
-                <th>Product Name</th>
-                <th>Color</th>
-                <th>Brand</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Image</th>
+                <td><c:out value="${item.productID}"/></td>
+                <td><c:out value="${item.productName}"/></td>
+                <td><c:out value="${item.colour}"/></td>
+                <td><c:out value="${item.brand}"/></td>
+                <td><c:out value="${item.quantity}"/></td>
+                <td><c:out value="${item.price}"/></td>
+                <td><c:out value="${item.category}"/></td>
+                <td><img src="<c:out value='${item.image}'/>" alt="<c:out value='${item.productName}'/>"></td>
             </tr>
-        </thead>
-        <tbody>
-            <!-- Iterate over itemList and display items -->
-            <c:forEach var="item" items="${itemList}">
-                <tr>
-                    <td><c:out value="${item.productID}"/></td>
-                    <td><c:out value="${item.productName}"/></td>
-                    <td><c:out value="${item.colour}"/></td>
-                    <td><c:out value="${item.brand}"/></td>
-                    <td><c:out value="${item.quantity}"/></td>
-                    <td><c:out value="${item.price}"/></td>
-                    <td><c:out value="${item.category}"/></td>
-                    <td><img src="<c:out value="${item.image}"/>" alt="<c:out value="${item.productName}"/>"></td>
-                </tr>
-           </c:forEach>
-        </tbody>
-    </table>
+        </c:forEach>
+    </tbody>
+</table>
 </body>
 </html>
+
+
 	
 <%--	<div class="products">
 		<div class="product">
