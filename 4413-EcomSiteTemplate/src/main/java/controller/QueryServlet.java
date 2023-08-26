@@ -49,7 +49,7 @@ public class QueryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String base = "/jsp/"; // Folder linking to jsp location
-		String url = base + "home.jsp"; // for example got to jsp/home.jsp
+		String url = base + "catalog.jsp"; // for example got to jsp/home.jsp
 		
 		// If any of these key words are found, send it to a different jsp
 		String action = request.getParameter("action");
@@ -61,35 +61,35 @@ public class QueryServlet extends HttpServlet {
 			// For each of these cases, we create a method!
 			case "allItems":
                 findAllItems(request, response);
-                url = base + "listOfItems.jsp";
+                //url = base + "listOfItems.jsp";
                 break;
-			case "category":
+			case "allBrands":
 				findByBrand(request, response, category);
-                url = base + "category.jsp?category=" + category;
+                //url = base + "category.jsp?category=" + category;
                 break;
             case "search":
                 searchKeyword(request, response, keyWord);
-                url = base + "searchResult.jsp";
+                //url = base + "searchResult.jsp";
                 break;
             case "sortPriceHighToLow":
             	sortItemsByPriceHtL(request, response, true);
-                url = base + "listOfItems.jsp";
+                //url = base + "listOfItems.jsp";
                 break;
             case "sortPriceLowToHigh":
             	sortItemsByPriceLtH(request, response, false);
-                url = base + "listOfItems.jsp";
+                //url = base + "listOfItems.jsp";
                 break;
             case "sortNameAZ":
                 sortItemsByName(request, response, true);
-                url = base + "listOfItems.jsp";
+                //url = base + "listOfItems.jsp";
                 break;
             case "sortNameZA":
                 sortItemsByName(request, response, false);
-                url = base + "listOfItems.jsp";
+                //url = base + "listOfItems.jsp";
                 break;
             case "allTops":
                 findAllTops(request, response);
-                url = base + "listOfTops.jsp";
+                //url = base + "listOfTops.jsp";
                 break;
             case "allBottoms":
                 findAllBottoms(request, response);

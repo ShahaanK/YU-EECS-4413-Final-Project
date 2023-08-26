@@ -7,7 +7,7 @@
         <h1>THE VIBEZ</h1>
     </div>
     <div class="top-buttons">
-        <a href="signin.jsp">Sign In</a>
+        <a href="login.jsp">Sign In</a>
         <a href="register.jsp">Register</a>
         <a href="admin.jsp">Admin</a>
     </div>

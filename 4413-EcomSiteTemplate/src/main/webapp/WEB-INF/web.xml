@@ -10,6 +10,8 @@
 		<param-name>imageURL</param-name>
 		<param-value>images</param-value>
 	</context-param>
+	
+
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

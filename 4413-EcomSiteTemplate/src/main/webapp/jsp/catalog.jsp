@@ -14,11 +14,62 @@
 <body>
  
 <div class="catalog">
-	<div class="filters">
-		<button>Low to High</button>
-		<button>High to Low</button>
-		<button>A-Z</button>
-	</div>
+	<form action="QueryServlet" method="post">
+    	<input type="hidden" name="action" value="sortPriceHighToLow">
+        <button type="submit" name="action" value="sortPriceHighToLow">Sort by Price (High to Low)</button>
+    </form>
+	<!-- Add buttons or forms for sorting -->
+    <form action="QueryServlet" method="post">
+    	<input type="hidden" name="action" value="sortPriceLowToHigh">
+        <button type="submit" name="action" value="sortPriceLowToHigh">Sort by Price (Low to High)</button>
+    </form> 
+    
+    <form action="QueryServlet" method="post">
+    	<input type="hidden" name="action" value="sortNameAZ">
+        <button type="submit" name="action" value="sortNameAZ">Sort by Name (A To Z)</button>
+    </form>      
+
+	<!-- Add forms for searching -->
+	<form action="QueryServlet" method="post">
+		<input type="hidden" name="action" value="search">
+		<input type="text" name="keyWord" placeholder="Search...">
+		<button type="submit">Search</button>
+	</form>
+</div>
+
+      <!-- Display the list of items -->
+    <table id="grid">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Color</th>
+                <th>Brand</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over itemList and display items -->
+            <c:forEach var="item" items="${itemList}">
+                <tr>
+                    <td><c:out value="${item.productID}"/></td>
+                    <td><c:out value="${item.productName}"/></td>
+                    <td><c:out value="${item.colour}"/></td>
+                    <td><c:out value="${item.brand}"/></td>
+                    <td><c:out value="${item.quantity}"/></td>
+                    <td><c:out value="${item.price}"/></td>
+                    <td><c:out value="${item.category}"/></td>
+                    <td><img src="<c:out value="${item.image}"/>" alt="<c:out value="${item.productName}"/>"></td>
+                </tr>
+           </c:forEach>
+        </tbody>
+    </table>
+</body>
+</html>
+	
 <%--	<div class="products">
 		<div class="product">
 			<img src="dummy1.jpg" alt="Product 1">
@@ -72,44 +123,3 @@
 	</div>
 
 --%> 
-	<div>
-		<c:if test="${param.category != null}" > 
-		 <span class="label" style="margin-left: 15px;"> List of ${param.category}  Books
-		 </span>
-		</c:if>
-	</div>
-
-	 
-	<table id="grid">
-		<thead>
-			<tr>
-			<%-- Need more headers --%>
-				<th id="th-title">Book Title</th>
-				<th id="th-author">Author(s)</th>
-				<th id="th-author1">Category</th>
-				
-			</tr>
-		</thead>
-
-
-		<tbody>
-		
-			
-        <!-- This is where we loop through the cart or productList-->
-			<c:forEach var="x" items="${itemList}">
-				<tr>
-					<%-- Need more headers --%>
-				
-					<td><c:out value="${x.bookTitle}"/></td>
-					<td><c:out value="${x.author.firstName} ${x.author.lastName}"/></td>
-					<td><c:out value="${x.category}"/></td>
-				</tr>
-			</c:forEach>
-	 
-
-		</tbody>
-
-	</table>
-</div>
-</body>
-</html>
