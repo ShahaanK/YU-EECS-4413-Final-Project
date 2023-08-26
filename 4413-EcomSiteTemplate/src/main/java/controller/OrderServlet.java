@@ -36,7 +36,7 @@ public class OrderServlet extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
 
         if (cart.isEmpty()) {
-        	response.sendRedirect("emptyCart.jsp");
+            response.sendRedirect("emptyCart.jsp");
             return;
         }
 

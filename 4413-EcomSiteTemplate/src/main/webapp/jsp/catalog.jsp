@@ -4,6 +4,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,30 +12,6 @@
     <title>Catalog</title>
 </head>
 <body>
-<%--
-<div class="catalog">
-    <!-- Sorting options -->
-    <form action="QueryServlet" method="post">
-        <input type="hidden" name="action" value="sortPriceHighToLow">
-        <button type="submit">Sort by Price (High to Low)</button>
-    </form>
-    <form action="QueryServlet" method="post">
-        <input type="hidden" name="action" value="sortPriceLowToHigh">
-        <button type="submit">Sort by Price (Low to High)</button>
-    </form>
-    <form action="QueryServlet" method="post">
-        <input type="hidden" name="action" value="sortNameAZ">
-        <button type="submit">Sort by Name (A To Z)</button>
-    </form>
-
-    <!-- Search form -->
-    <form action="QueryServlet" method="post">
-        <input type="hidden" name="action" value="search">
-        <input type="text" name="keyWord" placeholder="Search...">
-        <button type="submit">Search</button>
-    </form>
-</div>
---%> 
 
 <!-- Display the list of items -->
 <table id="grid">

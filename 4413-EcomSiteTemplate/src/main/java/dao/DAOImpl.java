@@ -15,11 +15,12 @@ public class DAOImpl implements DAO {
 
 	//------------Establishing Connection------------------------
 	static {
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException ex) {
-		}
-	}
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 	// complete this method
 	private Connection getConnection() throws SQLException {
@@ -30,56 +31,48 @@ public class DAOImpl implements DAO {
 
 	}
 
-	private void closeConnection(Connection connection) {
-		if (connection == null)
-			return;
-		try {
-			connection.close();
-		} catch (SQLException ex) {
-		}
-	}
+	 private void closeConnection(Connection connection) {
+	        if (connection == null)
+	            return;
+	        try {
+	            connection.close();
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
 	//---------------------------------------------
 
 	@Override
 	public List<Item> findAllItems() {
-		List<Item> result = new ArrayList<Item>();
+        List<Item> result = new ArrayList<>();
 
-		// join 3 tables to get needed info
-		String sql = "SELECT * from Item";
+        String sql = "select * from Item";
 
-		Connection connection = null;
-		try {
-			connection = getConnection();
-			PreparedStatement statement = connection.prepareStatement(sql);
-			ResultSet resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				
-				ProductOrderItem prod = new ProductOrderItem();
-				Item item = new Item();
-				
-				prod.setItemID(resultSet.getString("productID"));
-				
-				item.setProductID(resultSet.getString("productID"));
-				item.setProductName(resultSet.getString("productName"));
-				item.setColour(resultSet.getString("colour"));
-				item.setCategory(resultSet.getString("category"));
-				item.setBrand(resultSet.getString("category"));
-				item.setQuantity(resultSet.getInt("category"));
-				item.setPrice(resultSet.getDouble("price"));
-				item.setImage(resultSet.getString("image"));
-				
-				
-				result.add(item);
-				
-				
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			closeConnection(connection);
-		}
-		return result;
-	}
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Item item = new Item();
+                item.setProductID(resultSet.getString("productID"));
+                item.setProductName(resultSet.getString("productName"));
+                item.setColour(resultSet.getString("colour"));
+                item.setCategory(resultSet.getString("category"));
+                item.setBrand(resultSet.getString("brand"));
+                item.setQuantity(resultSet.getInt("quantity"));
+                item.setPrice(resultSet.getDouble("price"));
+                item.setImage(resultSet.getString("image"));
+
+                result.add(item);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+        return result;
+    }
 
 	@Override
 	public List<Item> findAllTops() {
@@ -402,7 +395,7 @@ public class DAOImpl implements DAO {
 	public List<Item> getImage() {
 	    List<Item> result = new ArrayList<>();
 
-	    String sql = " ";// for searching and put the image to the web
+	    String sql = "SELECT productID, productName, image FROM Item";// for searching and put the image to the web
 
 	    Connection connection = null;
 	    try {
