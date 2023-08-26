@@ -49,7 +49,12 @@ public class QueryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String base = "/jsp/"; // Folder linking to jsp location
-		String url = base + "catalog.jsp"; // for example got to jsp/home.jsp
+		String url = base + "index.jsp"; // for example got to jsp/home.jsp
+		
+		// if statement for if you are going to the home then only make url = index.jsp
+		// else do this: String url = base + "index.jsp"; // for example got to jsp/home.jsp
+
+		
 		
 		// If any of these key words are found, send it to a different jsp
 		String action = request.getParameter("action");
@@ -61,6 +66,10 @@ public class QueryServlet extends HttpServlet {
 			// For each of these cases, we create a method!
 			case "allItems":
                 findAllItems(request, response);
+				url = base + "catelog.jsp"; // We need to show this as a table. Maybe later we will maek
+				// another jsp or sm.
+				
+				
                 //url = base + "listOfItems.jsp";
                 break;
 			case "allBrands":
