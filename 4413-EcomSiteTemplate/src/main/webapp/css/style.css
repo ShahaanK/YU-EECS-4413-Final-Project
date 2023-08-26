@@ -11,260 +11,61 @@
   background: #ffffff;
   width: 981px;
   height: 951px;
-  position: absolute;
-  left: 0px;
-  top: 260px;
+  position: relative;
 }
 .rectangle-191 {
   background: #84e4f9;
   width: 981px;
   height: 238px;
-  position: absolute;
-  left: 0px;
-  top: 15px;
+  position: relative;
 }
 .rectangle-192 {
   background: #d1d1d1;
   width: 981px;
   height: 50px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
+  position: relative;
 }
 .rectangle-193 {
   background: #d1d1d1;
   width: 236px;
   height: 38px;
-  position: absolute;
-  left: 148px;
-  top: 306px;
+  position: relative;
 }
 .rectangle-194 {
   background: #d1d1d1;
   width: 71px;
   height: 38px;
-  position: absolute;
-  left: 646px;
-  top: 306px;
+  position: relative;
 }
 .rectangle-195 {
   background: #d1d1d1;
   width: 235px;
   height: 38px;
-  position: absolute;
-  left: 397px;
-  top: 306px;
+  position: relative;
 }
 .rectangle-196 {
   background: #25a3bf;
   width: 981px;
   height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 210px;
+  position: relative;
 }
-.home {
-  color: #ffffff;
-  text-align: left;
-  font: 400 20px "Inter", sans-serif;
-  position: absolute;
-  left: 40px;
-  top: 230px;
-  width: 103px;
-  height: 34px;
-}
-.sort-by {
-  color: #000000;
-  text-align: left;
-  font: 400 20px "Inter", sans-serif;
-  position: absolute;
-  left: 40px;
-  top: 317px;
-  width: 103px;
-  height: 34px;
-}
-.all-clothes {
-  color: #ffffff;
-  text-align: left;
-  font: 400 20px "Inter", sans-serif;
-  position: absolute;
-  left: 143px;
-  top: 228px;
-  width: 141px;
-  height: 34px;
-}
-.brands {
-  color: #ffffff;
-  text-align: left;
-  font: 400 20px "Inter", sans-serif;
-  position: absolute;
-  left: 326px;
-  top: 228px;
-  width: 141px;
-  height: 34px;
-}
-.rectangle-197 {
-  background: #ffffff;
-  width: 226px;
-  height: 45px;
-  position: absolute;
-  left: 626px;
-  top: 116px;
-}
-.search {
-  color: #000000;
-  text-align: left;
-  font: 400 20px "Inter", sans-serif;
-  position: absolute;
-  left: 623px;
-  top: 88px;
-  width: 116px;
-  height: 23px;
-}
-.rectangle-198 {
-  background: #fa1313;
-  width: 48px;
-  height: 45px;
-  position: absolute;
-  left: 860px;
-  top: 116px;
-}
-
-.rectangle-199 {
-  background: #d9d9d9;
-  width: 62px;
-  height: 24px;
-  position: absolute;
-  left: 626px;
-  top: 171px;
-}
-.search2 {
-  color: #000000;
-  text-align: left;
-  font: 400 15px "Inter", sans-serif;
-  position: absolute;
-  left: 632px;
-  top: 175px;
-  width: 52px;
-  height: 16px;
-}
-.image-44 {
-  width: 278px;
-  height: 270px;
-  position: absolute;
-  left: 40px;
-  top: 373px;
-}
-.image-45 {
-  width: 276px;
-  height: 315px;
-  position: absolute;
-  left: 346px;
-  top: 774px;
-}
-.image-46 {
-  width: 274px;
-  height: 270px;
-  position: absolute;
-  left: 658px;
-  top: 373px;
-}
-.image-47 {
-  width: 278px;
-  height: 311px;
-  position: absolute;
-  left: 40px;
-  top: 774px;
-}
-.image-48 {
-  width: 276px;
-  height: 315px;
-  position: absolute;
-  left: 650px;
-  top: 774px;
-}
-.image-49 {
-  width: 287px;
-  height: 270px;
-  position: absolute;
-  left: 341px;
-  top: 369px;
-}
-.price-high-to-low {
-  color: #000000;
-  text-align: left;
-  font: 400 16px "Inter", sans-serif;
-  position: absolute;
-  left: 182px;
-  top: 317px;
-  width: 167px;
-  height: 22px;
-}
-.price-low-to-high {
-  color: #000000;
-  text-align: left;
-  font: 400 16px "Inter", sans-serif;
-  position: absolute;
-  left: 431px;
-  top: 317px;
-  width: 168px;
-  height: 25px;
-}
-.a-z {
-  color: #000000;
-  text-align: left;
-  font: 400 16px "Inter", sans-serif;
-  position: absolute;
-  left: 666px;
-  top: 316px;
-  width: 32px;
-  height: 25px;
-}
-.admin {
-  color: #000000;
-  text-align: left;
-  font: 700 20px "Inter", sans-serif;
-  position: absolute;
-  left: 23px;
-  top: 15px;
-  width: 100px;
-  height: 27px;
-}
-.register {
-  color: #000000;
-  text-align: left;
-  font: 700 20px "Inter", sans-serif;
-  position: absolute;
-  left: 739px;
-  top: 15px;
-  width: 100px;
-  height: 27px;
-}
+.home,
+.sort-by,
+.all-clothes,
+.brands,
+.search,
+.search2,
+.price-high-to-low,
+.price-low-to-high,
+.a-z,
+.admin,
+.register,
 .sign-in {
-  color: #000000;
-  text-align: left;
-  font: 700 20px "Inter", sans-serif;
-  position: absolute;
-  left: 877px;
-  top: 15px;
-  width: 100px;
-  height: 27px;
+  position: relative;
 }
-.rectangle-1952 {
-  position: absolute;
-  left: 658px;
-  top: 660px;
-  overflow: visible;
-}
-.rectangle-200 {
-  position: absolute;
-  left: 341px;
-  top: 660px;
-  overflow: visible;
-}
+.rectangle-1952,
+.rectangle-200,
 .rectangle-201 {
-  position: absolute;
-  left: 40px;
-  top: 660px;
+  position: relative;
   overflow: visible;
 }
