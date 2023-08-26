@@ -360,6 +360,42 @@ public class DAOImpl implements DAO {
 
 	    return result;
 	}
+	
+	@Override
+	public List<Item> getSortZA(boolean descending) {
+	    List<Item> result = new ArrayList<>();
+
+	    // SQL query to sort items by product name (A to Z)
+	    String sql = "SELECT * FROM Item ORDER BY productName " + (descending ? "DESC" : "ASC");
+
+	    Connection connection = null;
+	    try {
+	        connection = getConnection(); // Replace with your connection logic
+	        PreparedStatement statement = connection.prepareStatement(sql);
+	        ResultSet resultSet = statement.executeQuery(sql);
+
+	        while (resultSet.next()) {
+	            Item item = new Item();
+	            // Populate the Item object with data from the result set
+	            item.setProductID(resultSet.getString("productID"));
+	            item.setProductName(resultSet.getString("productName"));
+	            item.setColour(resultSet.getString("colour"));
+	            item.setCategory(resultSet.getString("category"));
+	            item.setBrand(resultSet.getString("brand"));
+	            item.setQuantity(resultSet.getInt("quantity"));
+	            item.setPrice(resultSet.getDouble("price"));
+	            item.setImage(resultSet.getString("image"));
+
+	            result.add(item);
+	        }
+	    } catch (SQLException ex) {
+	        ex.printStackTrace(); 
+	    } finally {
+	        closeConnection(connection); 
+	    }
+
+	    return result;
+	}
 
 
 }

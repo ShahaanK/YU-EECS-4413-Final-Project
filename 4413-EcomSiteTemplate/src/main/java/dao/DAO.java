@@ -23,6 +23,8 @@ public interface DAO {
     public List<Item> getSortLoHi(boolean decesending); //S
 
 	public List<Item> getSortAZ(boolean ascending);
+	
+	public List<Item> getSortZA(boolean decesending);
 
     
 	

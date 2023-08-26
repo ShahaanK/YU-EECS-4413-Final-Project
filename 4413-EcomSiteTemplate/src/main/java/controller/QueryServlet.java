@@ -52,25 +52,49 @@ public class QueryServlet extends HttpServlet {
 		String url = base + "home.jsp"; // for example got to jsp/home.jsp
 		
 		// If any of these key words are found, send it to a different jsp
-		String action = request.getParameter("action"); 
-		String category = request.getParameter("category");
-		String keyWord = request.getParameter("keyWord");
+		String action = request.getParameter("action");
+        String category = request.getParameter("category");
+        String keyWord = request.getParameter("keyWord");
 		if (action != null) {
 			switch (action) {
 			
 			// For each of these cases, we create a method!
-			case "allBooks":
-				findAllItems(request, response);
-				url = base + "listOfBooks.jsp";
-				break;
+			case "allItems":
+                findAllItems(request, response);
+                url = base + "listOfItems.jsp";
+                break;
 			case "category":
-				findByBrand(request, response, keyWord);
-				url = base + "category.jsp?category=" + category;
-				break;
-			case "search":
-				searchKeyword(request, response, category);
-				url = base + "searchResult.jsp";
-				break;
+				findByBrand(request, response, category);
+                url = base + "category.jsp?category=" + category;
+                break;
+            case "search":
+                searchKeyword(request, response, keyWord);
+                url = base + "searchResult.jsp";
+                break;
+            case "sortPriceHighToLow":
+            	sortItemsByPriceHtL(request, response, true);
+                url = base + "listOfItems.jsp";
+                break;
+            case "sortPriceLowToHigh":
+            	sortItemsByPriceLtH(request, response, false);
+                url = base + "listOfItems.jsp";
+                break;
+            case "sortNameAZ":
+                sortItemsByName(request, response, true);
+                url = base + "listOfItems.jsp";
+                break;
+            case "sortNameZA":
+                sortItemsByName(request, response, false);
+                url = base + "listOfItems.jsp";
+                break;
+            case "allTops":
+                findAllTops(request, response);
+                url = base + "listOfTops.jsp";
+                break;
+            case "allBottoms":
+                findAllBottoms(request, response);
+                url = base + "listOfBottoms.jsp";
+                break;
 
 			}
 		}
@@ -79,31 +103,29 @@ public class QueryServlet extends HttpServlet {
 	}
 
 	
-	// The methods are below that we call for switch:
 	private void findAllItems(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			// calling DAO method to retrieve a list of all books 
-			List<Item> bookList = itemDAO.findAllItems();
+			List<Item> itemList = itemDAO.findAllItems();
 			
 			// CHANGE HERE 
-			request.setAttribute("bookList", bookList);
+			request.setAttribute("itemList", itemList);
 
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 
-	//search books by keyword
 	private void searchKeyword(HttpServletRequest request,
 			HttpServletResponse response, String keyWord)
 			throws ServletException, IOException {
 		try {
 			// calling DAO method to search book by keyword 
-			List<Item> bookList = itemDAO.searchKeyword(keyWord);
+			List<Item> itemList = itemDAO.searchKeyword(keyWord);
 
 			// CHANGE HERE 
-			request.setAttribute("bookList", bookList);
+			request.setAttribute("itemList", itemList);
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -115,14 +137,65 @@ public class QueryServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			// calling DAO method to retrieve all items
-			List<Item> bookList = itemDAO.findAllItems();
+			List<Item> itemList = itemDAO.findAllItems();
 						
 			// CHANGE HERE 
-			request.setAttribute("bookList", bookList);
+			request.setAttribute("itemList", itemList);
 
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
+	
+	private void sortItemsByPriceHtL(HttpServletRequest request, HttpServletResponse response, boolean ascending)
+            throws ServletException, IOException {
+        try {
+            List<Item> itemList = itemDAO.getSortHiLo(ascending);
+            request.setAttribute("itemList", itemList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+	
+	private void sortItemsByPriceLtH(HttpServletRequest request, HttpServletResponse response, boolean descending)
+	        throws ServletException, IOException {
+	    try {
+	        List<Item> itemList = itemDAO.getSortLoHi(descending);
+	        request.setAttribute("itemList", itemList);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
+
+    private void sortItemsByName(HttpServletRequest request, HttpServletResponse response, boolean ascending)
+            throws ServletException, IOException {
+        try {
+            List<Item> itemList = itemDAO.getSortAZ(ascending);
+            request.setAttribute("itemList", itemList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void findAllTops(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            List<Item> itemList = itemDAO.findAllTops();
+            request.setAttribute("itemList", itemList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void findAllBottoms(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            List<Item> itemList = itemDAO.findAllBottoms();
+            request.setAttribute("itemList", itemList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 	
 }
