@@ -31,13 +31,14 @@
     <!-- Main Content -->
     <div class="main-content">
         <h1>Create an Account</h1>
-        <form action="createAccount.jsp" method="post">
-            <input type="text" name="name" placeholder="Name">
-            <input type="text" name="address" placeholder="Address">
+        <form action="AccountCreationServlet" method="post">
+            <input type="text" name="firstName" placeholder="First Name">
+            <input type="text" name="lastName" placeholder="Last Name">
+            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="phone" placeholder="Phone Number">
             <input type="password" name="password" placeholder="Password">
             <input type="submit" value="Create Account">
         </form>
-        <button class="login-button">Login</button>
     </div>
 
 </body>

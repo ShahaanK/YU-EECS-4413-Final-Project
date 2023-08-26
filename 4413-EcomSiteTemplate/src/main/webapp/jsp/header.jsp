@@ -25,9 +25,11 @@
         <a href="allclothes.jsp">All Clothes</a>
         <a href="#">Brands</a>
         <div class="dropdown">
-            <a href="#">Brand 1</a>
-            <a href="#">Brand 2</a>
-            <a href="#">Brand 3</a>
+            <a href="#">Comfy</a>
+            <a href="#">Cool Tops</a>
+            <a href="#">Disco</a>
+            <a href="#">Gigi</a>
+            <a href="#">Happy</a>
         </div>
     </nav>
     <div class="catalog">
