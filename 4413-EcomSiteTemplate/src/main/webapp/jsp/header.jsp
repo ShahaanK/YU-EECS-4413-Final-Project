@@ -9,19 +9,7 @@
     <div class="top-buttons">
         <a href="signin.jsp">Sign In</a>
         <a href="register.jsp">Register</a>
-        
-        <!-- Make it so the Admin moves to login page if it is not logged in-->
-        <a href=".../js/admin.jsp">Admin</a>
-        <% 
-            // Replace with your actual logic for login confirmation and ID check
-            boolean isLoginConfirmed = true; // This should come from your authentication logic
-            String userId = "123"; // This should come from your authentication logic
-            if (isLoginConfirmed && "13".equals(userId)) {
-        %>
-            <a href="adminSalesList.jsp">Analytics</a>
-        <% 
-            }
-        %>
+        <a href="admin.jsp">Admin</a>
     </div>
     <div class="search-bar">
         <form action="search.jsp" method="get">
@@ -30,7 +18,7 @@
         </form>
     </div>
     <nav>
-		<a href="../index.jsp">Home</a>
+        <a href="index.html">Home</a>
         <a href="allclothes.jsp">All Clothes</a>
         <a href="#">Brands</a>
         <div class="dropdown">
