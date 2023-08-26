@@ -1,0 +1,95 @@
+
+@charset "ISO-8859-1";
+/* Basic Styling */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+}
+
+header a {
+    color: white;
+    margin: 15px;
+    text-decoration: none;
+}
+
+.title {
+    float: left;
+}
+
+.top-buttons {
+    float: right;
+}
+
+/* Updated Search Bar Styles to align it to the right */
+.search-bar {
+    position: absolute;
+    top: 50px;
+    right: 0; /* Ensure it's against the right edge */
+    padding-right: 1%;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.search-bar input[type="submit"] {
+    padding: 12px;
+}
+
+nav {
+    clear: both;
+}
+
+nav a {
+    margin: 15px;
+}
+
+/* Dropdown Styles */
+
+.dropdown {
+    display: none;
+}
+
+nav a:hover + .dropdown, .dropdown:hover {
+    display: block;
+}
+
+/* Catalog Styles */
+
+.catalog {
+    margin: 20px;
+}
+
+.catalog img {
+    width: 150px;
+    height: 200px;
+}
+
+.product {
+    display: inline-block;
+    margin: 15px;
+}
+
+.product-info {
+    text-align: center;
+}
+
+/* Media Queries for Responsiveness */
+
+@media only screen and (max-width: 600px) {
+    .product {
+        display: block;
+        margin: 15px auto;
+    }
+}

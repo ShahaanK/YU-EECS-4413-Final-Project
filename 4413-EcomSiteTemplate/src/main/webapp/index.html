@@ -1,63 +1,100 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>E-Commerce </title>
-<link rel="stylesheet" href="css/style.css" type="text/css" />
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THE VIBEZ - Home</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
 
+    <!-- Header Section -->
+    <header>
+        <div class="title">
+            <h1>THE VIBEZ</h1>
+        </div>
+        <div class="top-buttons">
+            <a href="signin.jsp">Sign In</a>
+            <a href="register.jsp">Register</a>
+            <a href="admin.jsp">Admin</a>
+        </div>
+        <div class="search-bar">
+            <form action="search.jsp" method="get">
+                <input type="text" name="query" placeholder="Search...">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="allclothes.jsp">All Clothes</a>
+            <a href="#">Brands</a>
+            <div class="dropdown">
+                <a href="#">Brand 1</a>
+                <a href="#">Brand 2</a>
+                <a href="#">Brand 3</a>
+            </div>
+        </nav>
+    </header>
 
-  <form method="get" action="QueryServlet">
-    <div class="landing-page-sk">
-      <div class="div">
-        <div class="overlap">
-          <div class="overlap-group"><div class="text-wrapper">PRICE: HIGH TO LOW</div></div>
-          <div class="div-wrapper"><div class="text-wrapper-2">A-Z</div></div>
-          <div class="overlap-2"><div class="text-wrapper-3">PRICE: LOW TO HIGH</div></div>
-          <div class="text-wrapper-4">SORT BY:</div>
-          <div class="frame">
-            <div class="frame-2">
-              <img class="mingcute-check-fill" src="img/mingcute-check-fill-4.svg" />
-              <img class="img" src="img/mingcute-check-fill-3.svg" />
-              <img class="mingcute-check-fill-2" src="img/mingcute-check-fill.svg" />
-              <div class="frame-3">
-                <div class="sample-image-wrapper"><img class="sample-image" src="img/sample-image-1.png" /></div>
-                <div class="img-wrapper"><img class="sample-image-2" src="img/sample-image-2.png" /></div>
-                <div class="frame-4"><img class="sample-image-3" src="img/sample-image-3.png" /></div>
-              </div>
+    <!-- Catalog Section -->
+    <div class="catalog">
+        <div class="filters">
+            <button>Low to High</button>
+            <button>High to Low</button>
+            <button>A-Z</button>
+        </div>
+        <div class="products">
+            <div class="product">
+                <img src="dummy1.jpg" alt="Product 1">
+                <div class="product-info">
+                    <p>Product 1</p>
+                    <p>$10</p>
+                    <button>Add</button>
+                </div>
             </div>
-          </div>
-          <div class="frame-5">
-            <div class="frame-3">
-              <div class="frame-6"><img class="sample-image-4" src="img/sample-image-4.png" /></div>
-              <div class="frame-7"><img class="sample-image-5" src="img/sample-image-5.png" /></div>
-              <div class="frame-7"><img class="sample-image-5" src="img/sample-image-6.png" /></div>
+            <!-- More products -->
+            <div class="product">
+                <img src="dummy2.jpg" alt="Product 2">
+                <div class="product-info">
+                    <p>Product 2</p>
+                    <p>$20</p>
+                    <button>Add</button>
+                </div>
             </div>
-            <img class="mingcute-check-fill-3" src="img/mingcute-check-fill-2.svg" />
-            <img class="mingcute-check-fill-4" src="img/mingcute-check-fill-5.svg" />
-            <img class="mingcute-check-fill-5" src="img/image.svg" />
-          </div>
+            <div class="product">
+                <img src="dummy3.jpg" alt="Product 3">
+                <div class="product-info">
+                    <p>Product 3</p>
+                    <p>$30</p>
+                    <button>Add</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="dummy4.jpg" alt="Product 4">
+                <div class="product-info">
+                    <p>Product 4</p>
+                    <p>$40</p>
+                    <button>Add</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="dummy5.jpg" alt="Product 5">
+                <div class="product-info">
+                    <p>Product 5</p>
+                    <p>$50</p>
+                    <button>Add</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="dummy6.jpg" alt="Product 6">
+                <div class="product-info">
+                    <p>Product 6</p>
+                    <p>$60</p>
+                    <button>Add</button>
+                </div>
+            </div>
         </div>
-        <div class="overlap-group-2">
-          <div class="title-rectangle"></div>
-          <div class="sign-in-bar"></div>
-          <p class="THE-VIBEZ"><span class="span">THE</span> <span class="text-wrapper-5"> VIBEZ</span></p>
-          <div class="search-bar"></div>
-          <div class="text-wrapper-6">SEARCH</div>
-          <div class="search-button"></div>
-          <div class="text-wrapper-7">Search</div>
-          <div class="text-wrapper-8">ADMIN</div>
-          <div class="text-wrapper-9">REGISTER</div>
-          <div class="text-wrapper-10">SIGN IN</div>
-        </div>
-        <div class="overlap-3">
-          <div class="text-wrapper-11">HOME</div>
-          <div class="text-wrapper-12">ALL CLOTHES</div>
-          <div class="text-wrapper-13">BRANDS</div>
-        </div>
-      </div>
     </div>
-  </body>
+
+</body>
 </html>
