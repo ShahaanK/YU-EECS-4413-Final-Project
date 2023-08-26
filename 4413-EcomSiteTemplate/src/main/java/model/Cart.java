@@ -1,0 +1,78 @@
+package model;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Cart {
+ 
+   private List<Item> cart;  // List of Items
+ 
+   // constructor
+   public Cart() {
+      cart = new ArrayList<Item>();
+   }
+ 
+   // Add a Item into this Cart
+   public void add(String productID, String productName, String colour, int quantity, double price, String image, String category, String brand) {
+      // Check if the id is already in the shopping cart
+      Iterator<Item> iter = cart.iterator();
+      while (iter.hasNext()) {
+         Item item = iter.next();
+         if (item.getProductID() == productID) {
+            // id found, increase quantity
+            item.setQuantity(item.getQuantity() + quantity);
+            return;
+         }
+      }
+      // id not found, create a new Item
+      Item i = new Item(productID, productName, colour, quantity, price, image, category, brand);
+      i.setQuantity(quantity);
+      cart.add(i);
+   }
+ 
+   // Update the quantity for the given id
+   public boolean update(String id, int newQty) {
+      Iterator<Item> iter = cart.iterator();
+      while (iter.hasNext()) {
+         Item item = iter.next();
+         if (item.getProductID() == id) {
+            // id found, increase quantity
+            item.setQuantity(newQty);
+            return true;
+         }
+      }
+      return false;
+   }
+ 
+   // Remove a Item given its id
+   public void remove(String id) {
+      Iterator<Item> iter = cart.iterator();
+      while (iter.hasNext()) {
+         Item item = iter.next();
+         if (item.getProductID() == id) {
+            cart.remove(item);
+            return;
+         }
+      }
+   }
+ 
+   // Get the number of Items in this Cart
+   public int size() {
+      return cart.size();
+   }
+ 
+   // Check if this Cart is empty
+   public boolean isEmpty() {
+      return size() == 0;
+   }
+ 
+   // Return all the Items in a List<Item>
+   public List<Item> getItems() {
+      return cart;
+   }
+ 
+   // Remove all the items in this Cart
+   public void clear() {
+      cart.clear();
+   }
+}

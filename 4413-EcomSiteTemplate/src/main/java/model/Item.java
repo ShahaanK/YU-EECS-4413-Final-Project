@@ -10,19 +10,19 @@ public class Item {
     private double price;
     private String image;
 
-    public Item() {
-    }
 
-    public Item(String productID, String productName, String colour, String category, String brand, int quantity, double price, String image) {
+    public Item(String productID, String productName, String colour, int quantity, double price, String image, String category, String brand) {
         this.productID = productID;
         this.productName = productName;
         this.colour = colour;
-        this.category = category;
-        this.brand = brand;
         this.quantity = quantity;
         this.price = price;
         this.image = image;
+        this.category = category;
+        this.brand = brand;
     }
+    
+    public Item() {}
 
     public String getProductID() {
         return productID;
