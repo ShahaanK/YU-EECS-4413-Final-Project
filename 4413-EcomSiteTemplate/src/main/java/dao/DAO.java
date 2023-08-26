@@ -26,6 +26,6 @@ public interface DAO {
 	
 	public List<Item> getSortZA(boolean decesending);
 
-    
+    public List<Item> getImage();
 	
 }
