@@ -25,8 +25,9 @@ public class DAOImpl implements DAO {
 	private Connection getConnection() throws SQLException {
 		String shahaan = "C:\\Users\\shaha\\OneDrive\\Desktop\\4413 - E-Comm\\Project\\4413DB.db";
 		String tracy = "/Users/miaonya/Downloads";
-		//return DriverManager.getConnection("jdbc:sqlite:" + shahaan);
-		return DriverManager.getConnection("jdbc:sqlite:" + tracy);
+		String mediya = "";
+		return DriverManager.getConnection("jdbc:sqlite:" + shahaan);//replace the name with yours's
+
 	}
 
 	private void closeConnection(Connection connection) {
