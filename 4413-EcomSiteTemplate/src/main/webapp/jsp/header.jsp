@@ -7,9 +7,16 @@
         <h1>THE VIBEZ</h1>
     </div>
     <div class="top-buttons">
+
         <a href="login.jsp">Sign In</a>
         <a href="register.jsp">Register</a>
         <a href="admin.jsp">Admin</a>
+
+		<a href="${pageContext.request.contextPath}/jsp/login.jsp">Sign In</a>
+        <a href="${pageContext.request.contextPath}/jsp/createAccount.jsp">Register</a>
+     <!-- Make it so the Admin moves to login page if it is not logged in-->
+        <a href="${pageContext.request.contextPath}/jsp/admin.jsp">Admin</a>
+
     </div>
     <div class="search-bar">
         <form action="search.jsp" method="get">
@@ -18,7 +25,7 @@
         </form>
     </div>
     <nav>
-        <a href="index.html">Home</a>
+		<a href="${pageContext.request.contextPath}/index.jsp">Home</a>
         <a href="allclothes.jsp">All Clothes</a>
         <a href="#">Brands</a>
         <div class="dropdown">
