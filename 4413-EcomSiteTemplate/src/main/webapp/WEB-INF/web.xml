@@ -3,15 +3,9 @@
   
 	<context-param>
 		<param-name>param1</param-name>
-		<param-value>books</param-value>
+		<param-value>QueryServlet</param-value>
 	</context-param>
 	
-	<context-param>
-		<param-name>imageURL</param-name>
-		<param-value>images</param-value>
-	</context-param>
-	
-
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
@@ -20,5 +14,7 @@
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>QueryServlet</welcome-file>
+
 	</welcome-file-list>
 </web-app>
