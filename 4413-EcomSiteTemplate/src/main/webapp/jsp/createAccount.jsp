@@ -16,7 +16,9 @@
 	<!-- Main Content -->
 	<div class="main-content">
 		<h1>Create an Account</h1>
-		<form action="createAccount.jsp" method="post">
+		<form action="/4413-EcomSiteTemplate/LoginServlet" method="post">
+			<input type="hidden" name="action" value="register">
+    		<input type="submit" value="Create Account">
 			<input type="text" name="firstName" placeholder="First Name">
 			<input type="text" name="lastName" placeholder="Last Name"> <input
 				type="text" name="address" placeholder="Address"> <input

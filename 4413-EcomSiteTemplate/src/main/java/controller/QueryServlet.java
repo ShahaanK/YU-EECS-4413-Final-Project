@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 
@@ -35,6 +36,7 @@ public class QueryServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -98,6 +100,11 @@ public class QueryServlet extends HttpServlet {
                 findAllBottoms(request, response);
                 url = base + "catalog.jsp";
                 break;
+            case "main":
+            	displayRandomItems(request, response);
+            	url = "/jsp/main.jsp";
+            	break;
+            	
 			}
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
@@ -194,6 +201,16 @@ public class QueryServlet extends HttpServlet {
         try {
             List<Item> itemList = itemDAO.findAllBottoms();
             request.setAttribute("itemList", itemList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void displayRandomItems(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            List<Item> randomItems = itemDAO.getRandomItems(8); // Change the number to the desired count of random items
+            request.setAttribute("randomItems", randomItems);
         } catch (Exception e) {
             e.printStackTrace();
         }

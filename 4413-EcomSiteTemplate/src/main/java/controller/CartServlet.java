@@ -16,6 +16,7 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+
         String url = "/jsp/cart.jsp";
 
         if (action != null) {
@@ -55,9 +56,11 @@ public class CartServlet extends HttpServlet {
                     if (cartToRemoveFrom != null) {
                         cartToRemoveFrom.remove(productIDToRemove);
                     }
+                    break;
             }
         }
 
+        request.getSession().setAttribute("cart", getOrCreateCart(request));
         request.getRequestDispatcher(url).forward(request, response);
     }
 /*  getOrCreateCart(HttpServletRequest request): This method checks if a Cart object exists in the session. 

@@ -11,7 +11,9 @@
 	
 	<div class="main-content">
     <h1>Sign In</h1>
-    <form action="loginServlet" method="post">
+    <form action="LoginServlet" method="post">
+    	<input type="hidden" name="action" value="login">
+    	<input type="submit" value="Login">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
         

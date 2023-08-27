@@ -29,6 +29,20 @@ header a {
     float: right;
 }
 
+.cart {
+    position: relative;
+}
+
+.cart-item-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
 /* Updated Search Bar Styles to align it to the right */
 .search-bar {
     position: absolute;

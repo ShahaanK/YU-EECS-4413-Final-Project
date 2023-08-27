@@ -4,6 +4,9 @@ import java.util.List;
 
 import model.Item;
 import model.Payment;
+import model.ProductOrder;
+import model.Customer; // Import the Customer class
+import model.Admin; // Import the Admin class
 
 public interface DAO {
 	
@@ -30,5 +33,14 @@ public interface DAO {
     public List<Item> getImage();
     
     public void insertPayment(Payment payment);
+    boolean insertCustomer(Customer customer);
+
+    // Method to insert admin information
+    boolean insertAdmin(Admin admin);
+    
+    public List<Payment> getAllPayments();
+    public List<ProductOrder> getAllOrders();
+    
+    List<Item> getRandomItems(int count);
 	
 }
