@@ -78,19 +78,19 @@ public class QueryServlet extends HttpServlet {
                 break;
             case "sortPriceHighToLow":
             	sortItemsByPriceHtL(request, response, true);
-                url = base + "catalog.jsp";
+                url = "/jsp/sortResult.jsp";
                 break;
             case "sortPriceLowToHigh":
             	sortItemsByPriceLtH(request, response, false);
-                url = base + "catalog.jsp";
+                url = "/jsp/sortResult.jsp";
                 break;
             case "sortNameAZ":
                 sortItemsByName(request, response, true);
-                url = base + "catalog.jsp";
+                url = "/jsp/sortResult.jsp";
                 break;
             case "sortNameZA":
                 sortItemsByName(request, response, false);
-                url = base + "catalog.jsp";
+                url = "/jsp/sortResult.jsp";
                 break;
             case "allTops":
                 findAllTops(request, response);
