@@ -38,7 +38,7 @@ public class CartServlet extends HttpServlet {
                     break;
                     
                 case "update":
-                	String productIDToUpdate = request.getParameter("update");
+                    String productIDToUpdate = request.getParameter("productIDToUpdate");
                     String newQtyStr = request.getParameter("quantity_" + productIDToUpdate);
 
                     if (newQtyStr != null && !newQtyStr.isEmpty()) {
@@ -49,14 +49,15 @@ public class CartServlet extends HttpServlet {
                         }
                     }
                     break;
-                    
+
                 case "remove":
-                	String productIDToRemove = request.getParameter("remove");
+                    String productIDToRemove = request.getParameter("productIDToRemove");
                     Cart cartToRemoveFrom = getCart(request);
                     if (cartToRemoveFrom != null) {
                         cartToRemoveFrom.remove(productIDToRemove);
                     }
                     break;
+
             }
         }
 
