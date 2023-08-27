@@ -19,7 +19,7 @@
 
     </div>
     <div class="search-bar">
-        <form action="search.jsp" method="get">
+        <form action="searchResult.jsp" method="get">
             <input type="text" name="query" placeholder="Search...">
             <input type="submit" value="Search">
         </form>
