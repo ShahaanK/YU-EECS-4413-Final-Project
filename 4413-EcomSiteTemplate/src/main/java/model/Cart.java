@@ -13,48 +13,49 @@ public class Cart {
    }
  
    // Add a Item into this Cart
-   public void add(String productID, String productName, String colour, int quantity, double price, String image, String category, String brand) {
-      // Check if the id is already in the shopping cart
-      Iterator<Item> iter = cart.iterator();
-      while (iter.hasNext()) {
-         Item item = iter.next();
-         if (item.getProductID() == productID) {
+// Add a Item into this Cart
+public void add(String productID, String productName, String colour, int quantity, double price, String image, String category, String brand) {
+    // Check if the id is already in the shopping cart
+    Iterator<Item> iter = cart.iterator();
+    while (iter.hasNext()) {
+        Item item = iter.next();
+        if (item.getProductID().equals(productID)) {
             // id found, increase quantity
             item.setQuantity(item.getQuantity() + quantity);
             return;
-         }
-      }
-      // id not found, create a new Item
-      Item i = new Item(productID, productName, colour, quantity, price, image, category, brand);
-      i.setQuantity(quantity);
-      cart.add(i);
-   }
- 
-   // Update the quantity for the given id
-   public boolean update(String id, int newQty) {
-      Iterator<Item> iter = cart.iterator();
-      while (iter.hasNext()) {
-         Item item = iter.next();
-         if (item.getProductID() == id) {
+        }
+    }
+    // id not found, create a new Item
+    Item i = new Item(productID, productName, colour, quantity, price, image, category, brand);
+    cart.add(i);
+}
+
+// Update the quantity for the given id
+public boolean update(String id, int newQty) {
+    Iterator<Item> iter = cart.iterator();
+    while (iter.hasNext()) {
+        Item item = iter.next();
+        if (item.getProductID().equals(id)) {
             // id found, increase quantity
             item.setQuantity(newQty);
             return true;
-         }
-      }
-      return false;
-   }
- 
-   // Remove a Item given its id
-   public void remove(String id) {
-      Iterator<Item> iter = cart.iterator();
-      while (iter.hasNext()) {
-         Item item = iter.next();
-         if (item.getProductID() == id) {
-            cart.remove(item);
+        }
+    }
+    return false;
+}
+
+// Remove a Item given its id
+public void remove(String id) {
+    Iterator<Item> iter = cart.iterator();
+    while (iter.hasNext()) {
+        Item item = iter.next();
+        if (item.getProductID().equals(id)) {
+            iter.remove();
             return;
-         }
-      }
-   }
+        }
+    }
+}
+
  
    // Get the number of Items in this Cart
    public int size() {

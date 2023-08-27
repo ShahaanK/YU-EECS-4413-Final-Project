@@ -2,27 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Payment</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
 </head>
 <body>
-    <h1>Payment</h1>
-    
-    <form action="ProcessPaymentServlet" method="post">
-        <div class="payment-details">
-            <label for="cardNumber">Card Number:</label>
-            <input type="text" id="cardNumber" name="cardNumber" required>
-        </div>
-        <div class="payment-details">
-            <label for="expirationDate">Expiration Date:</label>
-            <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required>
-        </div>
-        <div class="payment-details">
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required>
-        </div>
-        
-        <button type="submit" class="checkout-button">Complete Payment</button>
+    <h1>Payment Information</h1>
+    <form action="/4413-EcomSiteTemplate/PaymentServlet" method="post">
+        Card Number: <input type="text" name="cardNumber" placeholder="xxxxxxxxxxxxxxxx" required><br>
+        Expiration Date (MM/YYYY): <input type="text" name="expirationDate" placeholder="mm/yy" required><br>
+        CVV: <input type="text" name="cvv" placeholder="xxx" required><br>
+        <input type="submit" value="Submit Payment">
     </form>
 </body>
 </html>

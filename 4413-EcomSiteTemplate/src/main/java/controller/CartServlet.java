@@ -16,41 +16,49 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        String url = "/jsp/cart.jsp";
 
         if (action != null) {
-        	 if (action.equals("add")) {
-                 String productID = request.getParameter("productID");
-                 String productName = request.getParameter("productName");
-                 String colour = request.getParameter("colour");
-                 int quantity = Integer.parseInt(request.getParameter("quantity"));
-                 double price = Double.parseDouble(request.getParameter("price"));
-                 String image = request.getParameter("image");
-                 String category = request.getParameter("category");
-                 String brand = request.getParameter("brand");
+            switch (action) {
+                case "add":
+                    String productID = request.getParameter("productID");
+                    String productName = request.getParameter("productName");
+                    String colour = request.getParameter("colour");
+                    int quantity = Integer.parseInt(request.getParameter("quantity"));
+                    double price = Double.parseDouble(request.getParameter("price"));
+                    String image = request.getParameter("image");
+                    String category = request.getParameter("category");
+                    String brand = request.getParameter("brand");
 
-                 Cart cart = getOrCreateCart(request);
-                 cart.add(productID, productName, colour, quantity, price, image, category, brand);
-              // Log the added item
-                 System.out.println("Added to cart: " + productName);
-              }
-            } else if (action.equals("update")) {
-                String productID = request.getParameter("productID");
-                int newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
+                    Cart cart = getOrCreateCart(request);
+                    cart.add(productID, productName, colour, quantity, price, image, category, brand);
+                    // Log the added item
+                    System.out.println("Added to cart: " + productName);
+                    break;
+                    
+                case "update":
+                	String productIDToUpdate = request.getParameter("update");
+                    String newQtyStr = request.getParameter("quantity_" + productIDToUpdate);
 
-                Cart cart = getCart(request);
-                if (cart != null) {
-                    cart.update(productID, newQuantity);
-                }
-            } else if (action.equals("remove")) {
-                String productID = request.getParameter("productID");
-
-                Cart cart = getCart(request);
-                if (cart != null) {
-                    cart.remove(productID);
-                }
+                    if (newQtyStr != null && !newQtyStr.isEmpty()) {
+                        int newQuantity = Integer.parseInt(newQtyStr);
+                        Cart cartToUpdate = getCart(request);
+                        if (cartToUpdate != null) {
+                            cartToUpdate.update(productIDToUpdate, newQuantity);
+                        }
+                    }
+                    break;
+                    
+                case "remove":
+                	String productIDToRemove = request.getParameter("remove");
+                    Cart cartToRemoveFrom = getCart(request);
+                    if (cartToRemoveFrom != null) {
+                        cartToRemoveFrom.remove(productIDToRemove);
+                    }
             }
+        }
 
-        request.getRequestDispatcher("/jsp/cart.jsp").forward(request, response);
+        request.getRequestDispatcher(url).forward(request, response);
     }
 /*  getOrCreateCart(HttpServletRequest request): This method checks if a Cart object exists in the session. 
  * If it does, it returns the existing Cart object. 

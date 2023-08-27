@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import model.Item;
+import model.Payment;
 
 public interface DAO {
 	
@@ -27,5 +28,7 @@ public interface DAO {
 	public List<Item> getSortZA(boolean decesending);
 
     public List<Item> getImage();
+    
+    public void insertPayment(Payment payment);
 	
 }

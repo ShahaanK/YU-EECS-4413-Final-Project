@@ -9,7 +9,7 @@
 <body>
     <h1>Your Shopping Cart</h1>
     
-    <form action="cart.jsp" method="post">
+    <form action="CartServlet" method="post">
         <table class="cart-table">
             <thead>
                 <tr>
@@ -45,12 +45,12 @@
     </form>
     
     <div class="footer-buttons">
-        <form action="index.html" method="get">
+        <form action="index.jsp" method="get">
             <button type="submit" class="continue-button">Continue Shopping</button>
         </form>
         
         <!-- Link to the payment page -->
-        <a href="payment.jsp" class="checkout-button">Proceed to Checkout</a>
+       <a href="${pageContext.request.contextPath}/jsp/payment.jsp"class="checkout-button">Proceed to Checkout</a>
     </div>
 </body>
 </html>

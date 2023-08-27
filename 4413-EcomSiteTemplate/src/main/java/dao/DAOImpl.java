@@ -11,6 +11,7 @@ import java.util.List;
 
 import model.ProductOrderItem;
 import model.Item;
+import model.Payment;
 
 public class DAOImpl implements DAO {
 
@@ -426,5 +427,27 @@ public class DAOImpl implements DAO {
 
 	    return result;
 	}
+	
+	@Override
+    public void insertPayment(Payment payment) {
+        String sql = "INSERT INTO Payment (paymentID, cardNum, expiration, CVV, orderID) VALUES (?, ?, ?, ?, ?)";
+
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, payment.getPaymentID());
+            statement.setString(2, payment.getCardNum());
+            statement.setString(3, payment.getExpir());
+            statement.setString(4, payment.getCvv());
+            statement.setInt(5, payment.getOrderID());
+
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+    }
 
 }
