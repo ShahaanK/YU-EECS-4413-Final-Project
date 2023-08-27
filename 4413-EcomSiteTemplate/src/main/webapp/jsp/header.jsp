@@ -25,9 +25,8 @@
 
     </div>
     <div class="search-bar">
-        <form action="QueryServlet" method="post">
-        	<input type="hidden" name="action" value="search">
-        	<input type="text" name="keyWord" placeholder="Search...">
+        <form action="searchResult.jsp" method="get">
+            <input type="text" name="query" placeholder="Search...">
             <input type="submit" value="Search">
         </form>
     </div>
@@ -59,6 +58,10 @@
     </form>
 
     <!-- Search form -->
-
+    <form action="QueryServlet" method="post">
+        <input type="hidden" name="action" value="search">
+        <input type="text" name="keyWord" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
 </div>
 </header>
