@@ -64,7 +64,7 @@ public class QueryServlet extends HttpServlet {
 			// For each of these cases, we create a method!
 			case "allItems":
                 findAllItems(request, response);
-                url = base + "catalog.jsp";
+                url = "/jsp/allClothes.jsp";
                 break;
             case "allBrands":
                 findByBrand(request, response, category);

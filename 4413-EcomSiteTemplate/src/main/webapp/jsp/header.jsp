@@ -26,11 +26,7 @@
     </div>
     <nav>
 		<a href="${pageContext.request.contextPath}/index.jsp">Home</a>
-        <form action="QueryServlet" method="post">
-        	<input type="hidden" name="action" value="findAllItems">
-       		<button type="submit">All Clothes</button>
-    	</form>
-        
+        <a href="/4413-EcomSiteTemplate/QueryServlet?action=allItems">All Clothes</a>
         <a href="#">Brands</a>
         <div class="dropdown">
             <a href="#">Brand 1</a>
