@@ -5,37 +5,28 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>All Clothes</title>
+    <link rel="stylesheet" type="text/css" href="allClothestyles.css"> <!-- Link your custom CSS stylesheet here -->
 </head>
 <body>
-<!-- Header -->
-	<jsp:include page="header.jsp"/>
-    <table id="grid">
-        <thead>
-            <tr>
-                <th>Product ID</th>
-                <th>Product Name</th>
-                <th>Color</th>
-                <th>Brand</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="item" items="${itemList}">
-                <tr>
-                    <td><c:out value="${item.productID}" /></td>
-                    <td><c:out value="${item.productName}" /></td>
-                    <td><c:out value="${item.colour}" /></td>
-                    <td><c:out value="${item.brand}" /></td>
-                    <td><c:out value="${item.quantity}" /></td>
-                    <td><c:out value="${item.price}" /></td>
-                    <td><c:out value="${item.category}" /></td>
-                    <td><img src="<c:out value='${item.image}' />" alt="<c:out value='${item.productName}' />"></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+    <!-- Header -->
+    <jsp:include page="header.jsp"/>
+
+    <!-- Product Grid -->
+    <div class="product-grid">
+        <c:forEach var="item" items="${itemList}">
+            <div class="product">
+                <div class="product-image">
+                    <img src="<c:out value='${item.image}' />" alt="<c:out value='${item.productName}' />">
+                </div>
+                <div class="product-details">
+                    <h2><c:out value="${item.productName}" /></h2>
+                    <p>Price: $<c:out value="${item.price}" /></p>
+                    <p>Brand: <c:out value="${item.brand}" /></p>
+                    <p>Category: <c:out value="${item.category}" /></p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
 </body>
 </html>
