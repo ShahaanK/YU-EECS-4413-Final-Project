@@ -101,21 +101,21 @@
                             <td><img src="<%= item.getImage() %>" alt="<%= item.getProductName() %>" class="product-image"></td>
                             <td><%= item.getProductID() %></td>
                             <td>
-                                <form action="CartServlet" method="post">
-                                    <input type="hidden" name="action" value="update">
-                                    <input type="hidden" name="productID" value="<%= item.getProductID() %>">
-                                    <input type="number" name="quantity_<%= item.getProductID() %>" value="<%= item.getQuantity() %>" min="1" class="quantity-input">
-                                    <button type="submit" name="update" value="<%= item.getProductID() %>" class="update-button">Update</button>
-                                </form>
-                            </td>
-                            <td><%= item.getPrice() %></td>
-                            <td>
-                                <form action="CartServlet" method="post">
-                                    <input type="hidden" name="action" value="remove">
-                                    <input type="hidden" name="productID" value="<%= item.getProductID() %>">
-                                    <button type="submit" class="remove-button">Remove</button>
-                                </form>
-                            </td>
+    <form action="CartServlet" method="post">
+        <input type="hidden" name="action" value="update">
+        <input type="hidden" name="productIDToUpdate" value="<%= item.getProductID() %>">
+        <input type="number" name="quantity_<%= item.getProductID() %>" value="<%= item.getQuantity() %>" min="1" class="quantity-input">
+        <button type="submit" class="update-button">Update</button>
+    </form>
+</td>
+<td><%= item.getPrice() * item.getQuantity() %></td>
+<td>
+    <form action="CartServlet" method="post">
+        <input type="hidden" name="action" value="remove">
+        <input type="hidden" name="productIDToRemove" value="<%= item.getProductID() %>">
+        <button type="submit" class="remove-button">Remove</button>
+    </form>
+</td>
                         </tr>
                     <% } %>
             </tbody>

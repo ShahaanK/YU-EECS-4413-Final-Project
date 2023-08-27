@@ -69,6 +69,15 @@
             text-align: center;
             margin-top: 1em;
         }
+               /* Styles for select element */
+        select {
+            width: 100%;
+            padding: 0.5em;
+            margin: 0.3em 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
     </style>
 </head>
 <body>
@@ -80,7 +89,10 @@
         <h1>Create an Account</h1>
         <form action="/4413-EcomSiteTemplate/LoginServlet" method="post">
             <input type="hidden" name="action" value="register">
-            
+            <select name="accountType">
+            	<option value="customer">Customer</option>
+            	<option value="admin">Admin</option>
+       	 	</select>
             <input type="text" name="firstName" placeholder="First Name">
             <input type="text" name="lastName" placeholder="Last Name">
             <input type="text" name="address" placeholder="Address">
