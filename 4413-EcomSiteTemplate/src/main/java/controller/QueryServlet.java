@@ -94,11 +94,11 @@ public class QueryServlet extends HttpServlet {
                 break;
             case "allTops":
                 findAllTops(request, response);
-                url = base + "catalog.jsp";
+                url = "/jsp/allClothes.jsp";
                 break;
             case "allBottoms":
                 findAllBottoms(request, response);
-                url = base + "catalog.jsp";
+                url = "/jsp/allClothes.jsp";
                 break;
             case "main":
             	displayRandomItems(request, response);

@@ -25,8 +25,9 @@
 
     </div>
     <div class="search-bar">
-        <form action="searchResult.jsp" method="get">
-            <input type="text" name="query" placeholder="Search...">
+        <form action="QueryServlet" method="post">
+        	<input type="hidden" name="action" value="search">
+        	<input type="text" name="keyWord" placeholder="Search...">
             <input type="submit" value="Search">
         </form>
     </div>
@@ -35,16 +36,19 @@
         <a href="/4413-EcomSiteTemplate/QueryServlet?action=allItems">All Clothes</a>
         <a href="#">Brands</a>
         <div class="dropdown">
-            <a href="#">Comfy</a>
-            <a href="#">Cool Tops</a>
-            <a href="#">Disco</a>
-            <a href="#">Gigi</a>
-            <a href="#">Happy</a>
+            <a href="#">Brand 1</a>
+            <a href="#">Brand 2</a>
+            <a href="#">Brand 3</a>
+        </div>
+        <a href="#">Category</a>
+        <div class="dropdown">
+            <a href="/4413-EcomSiteTemplate/QueryServlet?action=allTops">Top</a>
+            <a href="/4413-EcomSiteTemplate/QueryServlet?action=allBottoms">Button</a>
         </div>
     </nav>
     <div class="sortButton">
     <!-- Sorting options -->
-    <form action="QueryServlet" method="post">
+    <!--<form action="QueryServlet" method="post">
         <input type="hidden" name="action" value="sortPriceHighToLow">
         <button type="submit">Sort by Price (High to Low)</button>
     </form>
@@ -56,12 +60,9 @@
         <input type="hidden" name="action" value="sortNameAZ">
         <button type="submit">Sort by Name (A To Z)</button>
     </form>
+    -->
 
     <!-- Search form -->
-    <form action="QueryServlet" method="post">
-        <input type="hidden" name="action" value="search">
-        <input type="text" name="keyWord" placeholder="Search...">
-        <button type="submit">Search</button>
-    </form>
+
 </div>
 </header>
