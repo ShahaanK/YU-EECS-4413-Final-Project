@@ -2,12 +2,16 @@
 
 <!DOCTYPE html>
 <!-- header.jsp -->
+<link rel="stylesheet" type="text/css" href="css/header.css">
+
 <header>
     <div class="title">
         <h1>THE VIBEZ</h1>
     </div>
+    
     <div class="top-buttons">
-
+    <!-- intitParam points to web.xml -> context-param param1 which goes to QueryServlet -->
+		<a href="${initParam.param1}?action=allBooks">aLL BOOKS</a>
 		<a href="${pageContext.request.contextPath}/jsp/login.jsp">Sign In</a>
         <a href="${pageContext.request.contextPath}/jsp/createAccount.jsp">Register</a>
      <!-- Make it so the Admin moves to login page if it is not logged in-->

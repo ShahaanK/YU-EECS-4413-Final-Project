@@ -29,6 +29,17 @@
     </thead>
     <tbody>
         <c:forEach var="item" items="${itemList}">
+
+<div>
+		<c:if test="${param.price == null}" > 
+		<!-- Need to update this shit so we get the brands instead -->
+		 <span class="label" style="margin-left: 15px;"> List of ${param.category}  Books
+		 </span>
+		</c:if>
+	</div>
+
+    <table id="grid">
+        <thead>
             <tr>
                 <td><c:out value="${item.productID}"/></td>
                 <td><c:out value="${item.productName}"/></td>
@@ -47,56 +58,3 @@
 
 
 	
-<%--	<div class="products">
-		<div class="product">
-			<img src="dummy1.jpg" alt="Product 1">
-			<div class="product-info">
-				<p>Product 1</p>
-				<p>$10</p>
-				<button>Add</button>
-			</div>
-		</div>
-		<!-- More products -->
-		<div class="product">
-			<img src="dummy2.jpg" alt="Product 2">
-			<div class="product-info">
-				<p>Product 2</p>
-				<p>$20</p>
-				<button>Add</button>
-			</div>
-		</div>
-		<div class="product">
-			<img src="dummy3.jpg" alt="Product 3">
-			<div class="product-info">
-				<p>Product 3</p>
-				<p>$30</p>
-				<button>Add</button>
-			</div>
-		</div>
-		<div class="product">
-			<img src="dummy4.jpg" alt="Product 4">
-			<div class="product-info">
-				<p>Product 4</p>
-				<p>$40</p>
-				<button>Add</button>
-			</div>
-		</div>
-		<div class="product">
-			<img src="dummy5.jpg" alt="Product 5">
-			<div class="product-info">
-				<p>Product 5</p>
-				<p>$50</p>
-				<button>Add</button>
-			</div>
-		</div>
-		<div class="product">
-			<img src="dummy6.jpg" alt="Product 6">
-			<div class="product-info">
-				<p>Product 6</p>
-				<p>$60</p>
-				<button>Add</button>
-			</div>
-		</div>
-	</div>
-
---%> 
