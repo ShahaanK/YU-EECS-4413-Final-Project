@@ -13,23 +13,26 @@ import model.Cart;
 public class CartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
         if (action != null) {
-            if (action.equals("add")) {
-                String productID = request.getParameter("productID");
-                String productName = request.getParameter("productName");
-                String colour = request.getParameter("colour");
-                int quantity = Integer.parseInt(request.getParameter("quantity"));
-                double price = Double.parseDouble(request.getParameter("price"));
-                String image = request.getParameter("image");
-                String category = request.getParameter("category");
-                String brand = request.getParameter("brand");
+        	 if (action.equals("add")) {
+                 String productID = request.getParameter("productID");
+                 String productName = request.getParameter("productName");
+                 String colour = request.getParameter("colour");
+                 int quantity = Integer.parseInt(request.getParameter("quantity"));
+                 double price = Double.parseDouble(request.getParameter("price"));
+                 String image = request.getParameter("image");
+                 String category = request.getParameter("category");
+                 String brand = request.getParameter("brand");
 
-                Cart cart = getOrCreateCart(request);
-                cart.add(productID, productName, colour, quantity, price, image, category, brand);
+                 Cart cart = getOrCreateCart(request);
+                 cart.add(productID, productName, colour, quantity, price, image, category, brand);
+              // Log the added item
+                 System.out.println("Added to cart: " + productName);
+              }
             } else if (action.equals("update")) {
                 String productID = request.getParameter("productID");
                 int newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
@@ -46,9 +49,8 @@ public class CartServlet extends HttpServlet {
                     cart.remove(productID);
                 }
             }
-        }
 
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/cart.jsp").forward(request, response);
     }
 /*  getOrCreateCart(HttpServletRequest request): This method checks if a Cart object exists in the session. 
  * If it does, it returns the existing Cart object. 
