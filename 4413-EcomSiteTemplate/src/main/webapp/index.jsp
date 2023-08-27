@@ -13,9 +13,11 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            font-size: 32px;
+            font-size: 48px; /* Larger font size */
             font-weight: bold;
             cursor: pointer;
+            text-decoration: none; /* Remove underline */
+            color: #000; /* Set link color */
         }
     </style>
 </head>
