@@ -4,21 +4,63 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Payment result</title>
+    <title>Payment Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #343a40;
+            color: white;
+            padding: 1em;
+            margin: 0;
+            text-align: center;
+        }
+
+        p {
+            margin: 1em 0;
+            padding: 0 1em;
+        }
+
+        .success {
+            color: #4caf50;
+        }
+
+        .error {
+            color: #f44336;
+        }
+
+        a {
+            display: inline-block;
+            margin: 1em;
+            text-decoration: none;
+            color: #343a40;
+            border: 1px solid #343a40;
+            padding: 0.5em 1em;
+            border-radius: 4px;
+        }
+
+        a:hover {
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h1>Payment Result</h1>
     <c:if test="${not empty paymentMessage}">
-        <p>${paymentMessage}</p>
+        <p class="${paymentMessage == 'Order Successfully Completed.' ? 'success' : 'error'}">${paymentMessage}</p>
         <c:choose>
             <c:when test="${paymentMessage == 'Order Successfully Completed.'}">
                 <h2>Order Information:</h2>
-                <!-- Display order details here -->
                 <p>Order ID: ${orderID}</p>
                 <!-- Add other order details as needed -->
-                
+
                 <h2>Payment Information:</h2>
-                <!-- Display payment details here -->
                 <p>Payment ID: ${paymentID}</p>
                 <p>Card Number: ${cardNumber}</p>
                 <p>Expiration Date: ${expirationDate}</p>
