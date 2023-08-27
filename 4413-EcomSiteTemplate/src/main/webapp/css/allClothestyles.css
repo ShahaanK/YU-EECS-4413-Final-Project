@@ -6,18 +6,16 @@ body, h1, h2, p {
 
 /* Basic styling for the product grid */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2em;  /* Change this to set the gap between grid items */
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-/* Styling for each individual product */
 .product {
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 0 0 16.66%;  /* 100% / 6 */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;  /* Center the text under the image */
 }
 
 /* New class to center the image */
@@ -37,6 +35,7 @@ body, h1, h2, p {
 /* Styling for product details */
 .product-details {
     padding: 10px;
+    text-align: center;  /* Center the text */
 }
 
 /* Styling for product name */

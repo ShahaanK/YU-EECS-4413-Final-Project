@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>All Clothes</title>
-<link rel="stylesheet" type="text/css" href="allClothestyles.css">
+<link rel="stylesheet" type="text/css" href="css/allClothestyles.css">
 <!-- Link your custom CSS stylesheet here -->
 </head>
 <body>
@@ -18,7 +18,9 @@
 		<c:forEach var="item" items="${itemList}">
 			<div class="product">
 				<div class="product-image">
-					<img src="<c:out value='${item.image}' />"
+				
+								
+					<img src="images/<c:out value='${item.image}' />"
 						alt="<c:out value='${item.productName}' />">
 				</div>
 				<div class="product-details">
@@ -59,6 +61,8 @@
 					</form>
 				</div>
 			</div>
+			
+
 		</c:forEach>
 	</div>
 </body>
