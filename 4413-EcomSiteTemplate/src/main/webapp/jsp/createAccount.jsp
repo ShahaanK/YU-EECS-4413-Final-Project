@@ -79,6 +79,29 @@
         }
 
     </style>
+    <script>
+        function toggleFields() {
+            var accountType = document.getElementById("accountType").value;
+            var adminFields = document.querySelectorAll(".admin-fields");
+            var customerFields = document.querySelectorAll(".customer-fields");
+
+            if (accountType === "admin") {
+                adminFields.forEach(function(field) {
+                    field.classList.remove("hidden");
+                });
+                customerFields.forEach(function(field) {
+                    field.classList.add("hidden");
+                });
+            } else {
+                adminFields.forEach(function(field) {
+                    field.classList.add("hidden");
+                });
+                customerFields.forEach(function(field) {
+                    field.classList.remove("hidden");
+                });
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="header">
@@ -89,21 +112,22 @@
         <h1>Create an Account</h1>
         <form action="/4413-EcomSiteTemplate/LoginServlet" method="post">
             <input type="hidden" name="action" value="register">
-            <select name="accountType">
-            	<option value="customer">Customer</option>
-            	<option value="admin">Admin</option>
-       	 	</select>
-            <input type="text" name="firstName" placeholder="First Name">
-            <input type="text" name="lastName" placeholder="Last Name">
-            <input type="text" name="address" placeholder="Address">
-            <input type="text" name="city" placeholder="City">
-            <input type="text" name="province" placeholder="Province">
-            <input type="text" name="country" placeholder="Country">
-            <input type="text" name="postalCode" placeholder="Postal Code">
-            <input type="email" name="email" placeholder="Email Address">
-            <input type="tel" name="phoneNumber" placeholder="Phone Number">
-            <input type="password" name="password" placeholder="Password">
-            <input type="password" name="confirmPassword" placeholder="Re-enter Password">
+            <select id="accountType" name="accountType" onchange="toggleFields()">
+                <option value="customer">Customer</option>
+                <option value="admin">Admin</option>
+            </select>
+            <input type="text" name="firstName" placeholder="First Name" class="admin-fields hidden">
+            <input type="text" name="lastName" placeholder="Last Name" class="admin-fields hidden">
+            <input type="email" name="email" placeholder="Email Address" class="admin-fields hidden">
+            <input type="password" name="password" placeholder="Password" class="admin-fields hidden">
+            <input type="password" name="confirmPassword" placeholder="Re-enter Password" class="admin-fields hidden">
+            
+            <input type="text" name="address" placeholder="Address" class="customer-fields">
+            <input type="text" name="city" placeholder="City" class="customer-fields">
+            <input type="text" name="province" placeholder="Province" class="customer-fields">
+            <input type="text" name="country" placeholder="Country" class="customer-fields">
+            <input type="text" name="postalCode" placeholder="Postal Code" class="customer-fields">
+            <input type="tel" name="phoneNumber" placeholder="Phone Number" class="customer-fields">
             
             <button class="create-account-button">Create Account</button>
         </form>
