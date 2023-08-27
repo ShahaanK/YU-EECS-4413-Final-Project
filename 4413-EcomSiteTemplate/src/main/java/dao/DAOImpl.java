@@ -259,7 +259,7 @@ public class DAOImpl implements DAO {
 	    List<Item> result = new ArrayList<>();
 
 	    // SQL query to sort items by price (high to low)
-	    String sql = "SELECT * FROM Item ORDER BY price " + (ascending ? "ASC" : "DESC");
+	    String sql = "SELECT * FROM Item ORDER BY price ";
 
 	    Connection connection = null;
 	    try {
@@ -294,7 +294,7 @@ public class DAOImpl implements DAO {
 	    List<Item> result = new ArrayList<>();
 
 	    // SQL query to sort items by price in ascending order (low to high)
-	    String sql = "SELECT * FROM Item ORDER BY price " + (descending ? "DESC" : "ASC");
+	    String sql = "SELECT * FROM Item ORDER BY price ";
 
 	    Connection connection = null;
 	    try {
@@ -331,7 +331,7 @@ public class DAOImpl implements DAO {
 	    List<Item> result = new ArrayList<>();
 
 	    // SQL query to sort items by product name (A to Z)
-	    String sql = "SELECT * FROM Item ORDER BY productName " + (ascending ? "ASC" : "DESC");
+	    String sql = "SELECT * FROM Item ORDER BY productName";
 
 	    Connection connection = null;
 	    try {
