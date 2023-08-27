@@ -25,9 +25,8 @@
 
     </div>
     <div class="search-bar">
-        <form action="QueryServlet" method="post">
-        	<input type="hidden" name="action" value="search">
-        	<input type="text" name="keyWord" placeholder="Search...">
+        <form action="searchResult.jsp" method="get">
+            <input type="text" name="query" placeholder="Search...">
             <input type="submit" value="Search">
         </form>
     </div>
@@ -36,9 +35,11 @@
         <a href="/4413-EcomSiteTemplate/QueryServlet?action=allItems">All Clothes</a>
         <a href="#">Brands</a>
         <div class="dropdown">
-            <a href="#">Brand 1</a>
-            <a href="#">Brand 2</a>
-            <a href="#">Brand 3</a>
+            <a href="#">Comfy</a>
+            <a href="#">Cool Tops</a>
+            <a href="#">Disco</a>
+            <a href="#">Gigi</a>
+            <a href="#">Happy</a>
         </div>
     </nav>
     <div class="sortButton">
@@ -57,6 +58,10 @@
     </form>
 
     <!-- Search form -->
-
+    <form action="QueryServlet" method="post">
+        <input type="hidden" name="action" value="search">
+        <input type="text" name="keyWord" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
 </div>
 </header>
