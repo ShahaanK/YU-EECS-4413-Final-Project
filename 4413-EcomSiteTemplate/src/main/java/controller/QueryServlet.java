@@ -64,38 +64,39 @@ public class QueryServlet extends HttpServlet {
 			// For each of these cases, we create a method!
 			case "allItems":
                 findAllItems(request, response);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "allBrands":
                 findByBrand(request, response, category);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "search":
                 searchKeyword(request, response, keyWord);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "sortPriceHighToLow":
             	sortItemsByPriceHtL(request, response, true);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "sortPriceLowToHigh":
             	sortItemsByPriceLtH(request, response, false);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "sortNameAZ":
                 sortItemsByName(request, response, true);
+                url = base + "catalog.jsp";
                 break;
             case "sortNameZA":
                 sortItemsByName(request, response, false);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "allTops":
                 findAllTops(request, response);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "allBottoms":
                 findAllBottoms(request, response);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
 			}
 		}

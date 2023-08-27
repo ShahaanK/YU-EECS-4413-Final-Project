@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <!-- header.jsp -->
-<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 
 <header>
     <div class="title">
@@ -26,7 +26,11 @@
     </div>
     <nav>
 		<a href="${pageContext.request.contextPath}/index.jsp">Home</a>
-        <a href="allclothes.jsp">All Clothes</a>
+        <form action="QueryServlet" method="post">
+        	<input type="hidden" name="action" value="findAllItems">
+       		<button type="submit">All Clothes</button>
+    	</form>
+        
         <a href="#">Brands</a>
         <div class="dropdown">
             <a href="#">Brand 1</a>
@@ -34,7 +38,7 @@
             <a href="#">Brand 3</a>
         </div>
     </nav>
-    <div class="catalog">
+    <div class="sortButton">
     <!-- Sorting options -->
     <form action="QueryServlet" method="post">
         <input type="hidden" name="action" value="sortPriceHighToLow">

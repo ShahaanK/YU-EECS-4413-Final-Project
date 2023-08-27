@@ -1,5 +1,4 @@
 
-@charset "ISO-8859-1";
 /* Basic Styling */
 
 body {
@@ -45,6 +44,15 @@ header a {
 
 .search-bar input[type="submit"] {
     padding: 12px;
+}
+
+.sortButton {
+    margin: 20px;
+}
+
+.sortButton form {
+    display: inline-block; 
+    margin-right: 15px;
 }
 
 nav {
@@ -94,5 +102,3 @@ nav a:hover + .dropdown, .dropdown:hover {
     }
 }
 
-
-/*==================================================Catalog*/
