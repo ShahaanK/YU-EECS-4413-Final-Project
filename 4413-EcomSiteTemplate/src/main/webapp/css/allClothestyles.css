@@ -1,0 +1,82 @@
+/* Reset some default styles */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling for the product grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Styling for each individual product */
+.product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for product images */
+.product-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Styling for product details */
+.product-details {
+    padding: 10px;
+}
+
+/* Styling for product name */
+.product-details h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Styling for product price */
+.product-details p {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+/* Styling for add to cart button */
+.product-details button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Hover effect for the add to cart button */
+.product-details button:hover {
+    background-color: #0056b3;
+}
+
+/* Header styles (you can customize as needed) */
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Centering content inside the header */
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Link styles */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

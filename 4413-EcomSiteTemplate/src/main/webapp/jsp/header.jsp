@@ -2,12 +2,22 @@
 
 <!DOCTYPE html>
 <!-- header.jsp -->
+<link rel="stylesheet" type="text/css" href="css/index.css">
+
 <header>
     <div class="title">
         <h1>THE VIBEZ</h1>
     </div>
+    
     <div class="top-buttons">
+    <!-- intitParam points to web.xml -> context-param param1 which goes to QueryServlet -->
+		<div class="cart">
+        <a href="${pageContext.request.contextPath}/jsp/cart.jsp">
+            <img src="${pageContext.request.contextPath}images/icon/icon.png" alt="Shopping Cart">
+        </a>
 
+    </div>
+    
 		<a href="${pageContext.request.contextPath}/jsp/login.jsp">Sign In</a>
         <a href="${pageContext.request.contextPath}/jsp/createAccount.jsp">Register</a>
      <!-- Make it so the Admin moves to login page if it is not logged in-->
@@ -15,14 +25,14 @@
 
     </div>
     <div class="search-bar">
-        <form action="search.jsp" method="get">
+        <form action="searchResult.jsp" method="get">
             <input type="text" name="query" placeholder="Search...">
             <input type="submit" value="Search">
         </form>
     </div>
     <nav>
 		<a href="${pageContext.request.contextPath}/index.jsp">Home</a>
-        <a href="allclothes.jsp">All Clothes</a>
+        <a href="/4413-EcomSiteTemplate/QueryServlet?action=allItems">All Clothes</a>
         <a href="#">Brands</a>
         <div class="dropdown">
             <a href="#">Comfy</a>
@@ -32,7 +42,7 @@
             <a href="#">Happy</a>
         </div>
     </nav>
-    <div class="catalog">
+    <div class="sortButton">
     <!-- Sorting options -->
     <form action="QueryServlet" method="post">
         <input type="hidden" name="action" value="sortPriceHighToLow">

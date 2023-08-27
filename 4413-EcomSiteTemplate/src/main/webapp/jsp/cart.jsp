@@ -9,7 +9,7 @@
 <body>
     <h1>Your Shopping Cart</h1>
     
-    <form action="cart.jsp" method="post">
+    <form action="CartServlet" method="post">
         <table class="cart-table">
             <thead>
                 <tr>
@@ -28,16 +28,25 @@
                 %>
                     <tr>
                         <td><%= item.getProductName() %></td>
-                        <td><img src="<%= item.getImage() %>" alt="<%= item.getProductName() %>" class="product-image"></td>
-                        <td><%= item.getProductID() %></td>
-                        <td>
-                            <input type="number" name="quantity_<%= item.getProductID() %>" value="<%= item.getQuantity() %>" min="1" class="quantity-input">
-                            <button type="submit" name="update" value="<%= item.getProductID() %>" class="update-button">Update</button>
-                        </td>
-                        <td><%= item.getPrice() %></td>
-                        <td>
-                            <button type="submit" name="remove" value="<%= item.getProductID() %>" class="remove-button">Remove</button>
-                        </td>
+							<td><img src="<%= item.getImage() %>" alt="<%= item.getProductName() %>" class="product-image"></td>
+							<td><%= item.getProductID() %></td>
+							<td>
+							    <form action="CartServlet" method="post">
+							        <input type="hidden" name="action" value="update">
+							        <input type="hidden" name="productID" value="<%= item.getProductID() %>">
+							        <input type="number" name="quantity" value="<%= item.getQuantity() %>" min="1" class="quantity-input">
+							        <button type="submit" class="update-button">Update</button>
+							    </form>
+							</td>
+							<td><%= item.getPrice() %></td>
+							<td>
+							    <form action="CartServlet" method="post">
+							        <input type="hidden" name="action" value="remove">
+							        <input type="hidden" name="productID" value="<%= item.getProductID() %>">
+							        <button type="submit" class="remove-button">Remove</button>
+							    </form>
+							</td>
+
                     </tr>
                 <% } %>
             </tbody>
@@ -45,13 +54,12 @@
     </form>
     
     <div class="footer-buttons">
-        <form action="index.html" method="get">
+        <form action="index.jsp" method="get">
             <button type="submit" class="continue-button">Continue Shopping</button>
         </form>
         
-        <form action="finalCheckout.jsp" method="get">
-            <button type="submit" class="checkout-button">Proceed to Checkout</button>
-        </form>
+        <!-- Link to the payment page -->
+       <a href="${pageContext.request.contextPath}/jsp/payment.jsp"class="checkout-button">Proceed to Checkout</a>
     </div>
 </body>
 </html>

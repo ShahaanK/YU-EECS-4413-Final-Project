@@ -63,73 +63,83 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.DAOImpl;
+import model.Admin;
+import model.Customer;
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private static final String JDBC_URL = "jdbc:sqlite:/Users/mumtazkermali/Downloads/4413DB_1.db";
+    public LoginServlet() {
+        super();
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String userType = request.getParameter("userType");
+        String action = request.getParameter("action");
 
-        if (username != null && password != null && userType != null) {
-            try {
-                Connection connection = DriverManager.getConnection(JDBC_URL);
+        if (action != null) {
+            switch (action) {
+                case "login":
+                    String username = request.getParameter("username");
+                    String pwd = request.getParameter("password");
 
-                String query;
-                if ("customer".equals(userType)) {
-                    query = "SELECT id, firstName, lastName FROM Customer WHERE email = ? AND password = ?";
-                } else if ("admin".equals(userType)) {
-                    query = "SELECT adminID, firstName, lastName FROM Admin WHERE email = ? AND password = ?";
-                } else {
-                    // Handle other user types if needed
-                	System.out.println("user doesnt exist");
-                    return;
-                }
+                    // Here you would implement your login validation logic
+                    // For demonstration purposes, I'll assume a simple check
+                    // Replace this with your actual authentication logic
 
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, username);
-                statement.setString(2, password);
+                    if ("validUsername".equals(username) && "validPassword".equals(pwd)) {
+                        // Valid login, redirect to a success page or dashboard
+                        response.sendRedirect("success.jsp");
+                    } else {
+                        // Invalid login, redirect back to the login page with an error message
+                        request.setAttribute("errorMessage", "Invalid username or password");
+                        request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+                    }
+                    break;
 
-                ResultSet resultSet = statement.executeQuery();
+                case "register":
+                    String userType = request.getParameter("userType");
+                    String firstName = request.getParameter("firstName");
+                    String lastName = request.getParameter("lastName");
+                    String email = request.getParameter("email");
+                    String phoneNumber = request.getParameter("phoneNumber");
+                    String password = request.getParameter("password");
 
-                if (resultSet.next()) {
-                    // User exists, set up session and redirect
-                    HttpSession session = request.getSession();
-                    session.setAttribute("userID", resultSet.getInt(1));
-                    session.setAttribute("userFirstName", resultSet.getString(2));
-                    session.setAttribute("userLastName", resultSet.getString(3));
+                    DAOImpl userDAO = new DAOImpl();
+                    boolean registrationSuccess = false;
 
                     if ("customer".equals(userType)) {
-                        response.sendRedirect("customer_home.jsp");
+                        Customer newCustomer = new Customer();
+                        newCustomer.setFirstName(firstName);
+                        newCustomer.setLastName(lastName);
+                        newCustomer.setEmail(email);
+                        newCustomer.setPhone(phoneNumber);
+                        newCustomer.setPassword(password);
+
+                        registrationSuccess = userDAO.insertCustomer(newCustomer);
                     } else if ("admin".equals(userType)) {
-                        response.sendRedirect("admin_home.jsp");
+                        Admin newAdmin = new Admin();
+                        newAdmin.setFirstName(firstName);
+                        newAdmin.setLastName(lastName);
+                        newAdmin.setEmail(email);
+                        newAdmin.setPassword(password);
+
+                        registrationSuccess = userDAO.insertAdmin(newAdmin);
                     }
-                } else {
-                    // User doesn't exist, redirect to an error page or show a message
-                    response.sendRedirect("login.jsp?error=invalid");
-                }
 
-                resultSet.close();
-                statement.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                // Handle database error
-                response.sendRedirect("login.jsp?error=db");
+                    if (registrationSuccess) {
+                        response.sendRedirect("registrationSuccess.jsp");
+                    } else {
+                        request.setAttribute("errorMessage", "Failed to register user");
+                        request.getRequestDispatcher("/jsp/register.jsp").forward(request, response);
+                    }
+                    break;
+
+                default:
+                    break;
             }
-        } else {
-            // Invalid input, handle accordingly
-            response.sendRedirect("login.jsp?error=invalid-input");
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Handle GET requests
-        doPost(request, response);
     }
 }

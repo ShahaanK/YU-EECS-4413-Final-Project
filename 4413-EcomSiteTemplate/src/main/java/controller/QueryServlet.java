@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DAOImpl;
+
 import model.Item;
 
 
@@ -36,11 +38,19 @@ public class QueryServlet extends HttpServlet {
     }
 
 	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
+
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		// if statement for if you are going to the home then only make url = index.jsp
 		// else do this: String url = base + "index.jsp"; // for example got to jsp/home.jsp
 		String base = "/jsp/"; // Folder linking to jsp location
@@ -56,53 +66,50 @@ public class QueryServlet extends HttpServlet {
 			// For each of these cases, we create a method!
 			case "allItems":
                 findAllItems(request, response);
-				url = base + "catelog.jsp"; // We need to show this as a table. Maybe later we will maek
-				// another jsp or sm.
-
+                url = "/jsp/allClothes.jsp";
                 break;
-			case "allBrands":
-				findByBrand(request, response, category);
-				url = base + "catelog.jsp";
-                //url = base + "category.jsp?category=" + category;
+            case "allBrands":
+                findByBrand(request, response, category);
+                url = base + "catalog.jsp";
                 break;
             case "search":
                 searchKeyword(request, response, keyWord);
-                url = base + "catelog.jsp";
-                //url = base + "searchResult.jsp";
+                url = base + "/jsp/searchResult.jsp";
                 break;
             case "sortPriceHighToLow":
             	sortItemsByPriceHtL(request, response, true);
-            	url = base + "catelog.jsp";
-                //url = base + "listOfItems.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "sortPriceLowToHigh":
             	sortItemsByPriceLtH(request, response, false);
-            	url = base + "catelog.jsp";
-                //url = base + "listOfItems.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "sortNameAZ":
                 sortItemsByName(request, response, true);
-                //url = base + "listOfItems.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "sortNameZA":
                 sortItemsByName(request, response, false);
-                url = base + "catelog.jsp";
-                //url = base + "listOfItems.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "allTops":
                 findAllTops(request, response);
-                url = base + "catelog.jsp";
-                //url = base + "listOfTops.jsp";
+                url = base + "catalog.jsp";
                 break;
             case "allBottoms":
                 findAllBottoms(request, response);
-                url = base + "catelog.jsp";
+                url = base + "catalog.jsp";
                 break;
-
+            case "main":
+            	displayRandomItems(request, response);
+            	url = "/jsp/main.jsp";
+            	break;
+            	
 			}
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 		requestDispatcher.forward(request, response);
+
 	}
 
 	
@@ -120,8 +127,7 @@ public class QueryServlet extends HttpServlet {
 		}
 	}
 
-	private void searchKeyword(HttpServletRequest request,
-			HttpServletResponse response, String keyWord)
+	private void searchKeyword(HttpServletRequest request,HttpServletResponse response, String keyWord)
 			throws ServletException, IOException {
 		try {
 			// calling DAO method to search book by keyword 
@@ -135,12 +141,11 @@ public class QueryServlet extends HttpServlet {
 		}
 	}
 	
-	private void findByBrand(HttpServletRequest request,
-			HttpServletResponse response, String cate)
+	private void findByBrand(HttpServletRequest request,HttpServletResponse response, String cate)
 			throws ServletException, IOException {
 		try {
 			// calling DAO method to retrieve all items
-			List<Item> itemList = itemDAO.findAllItems();
+			List<Item> itemList = itemDAO.findByBrand(cate);
 						
 			// CHANGE HERE 
 			request.setAttribute("itemList", itemList);
@@ -200,5 +205,16 @@ public class QueryServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+    
+    private void displayRandomItems(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            List<Item> randomItems = itemDAO.getRandomItems(8); // Change the number to the desired count of random items
+            request.setAttribute("randomItems", randomItems);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 	
 }

@@ -1,5 +1,4 @@
 
-@charset "ISO-8859-1";
 /* Basic Styling */
 
 body {
@@ -30,6 +29,20 @@ header a {
     float: right;
 }
 
+.cart {
+    position: relative;
+}
+
+.cart-item-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
 /* Updated Search Bar Styles to align it to the right */
 .search-bar {
     position: absolute;
@@ -45,6 +58,15 @@ header a {
 
 .search-bar input[type="submit"] {
     padding: 12px;
+}
+
+.sortButton {
+    margin: 20px;
+}
+
+.sortButton form {
+    display: inline-block; 
+    margin-right: 15px;
 }
 
 nav {
@@ -93,3 +115,4 @@ nav a:hover + .dropdown, .dropdown:hover {
         margin: 15px auto;
     }
 }
+
