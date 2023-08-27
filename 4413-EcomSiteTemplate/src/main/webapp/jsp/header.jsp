@@ -15,7 +15,6 @@
         <a href="${pageContext.request.contextPath}/jsp/cart.jsp">
             <img src="${pageContext.request.contextPath}images/icon/icon.png" alt="Shopping Cart">
         </a>
-
     </div>
     
 		<a href="${pageContext.request.contextPath}/jsp/login.jsp">Sign In</a>
@@ -47,6 +46,7 @@
         </div>
     </nav>
     <div class="sortButton">
+    <!-- Sorting options -->
     <!-- Sorting options -->
     <!--<form action="QueryServlet" method="post">
         <input type="hidden" name="action" value="sortPriceHighToLow">

@@ -51,8 +51,6 @@ public class QueryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		// if statement for if you are going to the home then only make url = index.jsp
-		// else do this: String url = base + "index.jsp"; // for example got to jsp/home.jsp
 		String base = "/jsp/"; // Folder linking to jsp location
 		String url = "index.jsp";
 
