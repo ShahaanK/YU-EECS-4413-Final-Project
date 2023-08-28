@@ -34,7 +34,7 @@ public class DAOImpl implements DAO {
 		String shahaan = "C:\\Users\\shaha\\OneDrive\\Desktop\\4413 - E-Comm\\Project\\4413DB.db";
 		String tracy = "//Users//miaonya//Desktop//4413DB.db";
 		String mediya = "//put your path here";
-		return DriverManager.getConnection("jdbc:sqlite:" + tracy);//replace the name with yours's
+		return DriverManager.getConnection("jdbc:sqlite:" + shahaan);//replace the name with yours's
 
 	}
 
