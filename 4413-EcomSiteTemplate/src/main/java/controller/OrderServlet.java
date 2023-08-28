@@ -29,14 +29,14 @@ public class OrderServlet extends HttpServlet {
         Customer customer = (Customer) session.getAttribute("customer");
 
         if (customer == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("/jsp/login.jsp");
             return;
         }
 
         Cart cart = (Cart) session.getAttribute("cart");
 
         if (cart.isEmpty()) {
-            response.sendRedirect("emptyCart.jsp");
+            response.sendRedirect("/jsp/emptyCart.jsp");
             return;
         }
 
@@ -58,6 +58,6 @@ public class OrderServlet extends HttpServlet {
         cart.clear();
 
         request.setAttribute("order", order);
-        request.getRequestDispatcher("finalCheckout.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/finalCheckout.jsp").forward(request, response);
     }
 }

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import model.ProductOrderItem;
 import model.Item;
@@ -467,6 +468,172 @@ public class DAOImpl implements DAO {
 
 	    return result;
 	}
+	
+	@Override
+	public void registerCustomer(Customer customer) {
+	    Connection connection = null;
+	    try {
+	        connection = getConnection();
+
+	        String sql = "INSERT INTO Customer (id, firstName, lastName, email, phone, password, addressID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+	        PreparedStatement statement = connection.prepareStatement(sql);
+	        statement.setInt(1, generateCustomerID()); // Generate and set the customer ID
+	        statement.setString(2, customer.getFirstName());
+	        statement.setString(3, customer.getLastName());
+	        statement.setString(4, customer.getEmail());
+	        statement.setString(5, customer.getPhone());
+	        statement.setString(6, customer.getPassword());
+	        statement.setInt(7, customer.getAddressID());
+
+	        statement.executeUpdate();
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        closeConnection(connection);
+	    }
+	}
+
+	@Override
+	public void registerAdmin(Admin admin) {
+	    Connection connection = null;
+	    try {
+	        connection = getConnection();
+
+	        String sql = "INSERT INTO Admin (adminID, firstName, lastName, email, password) VALUES (?, ?, ?, ?, ?)";
+
+	        PreparedStatement statement = connection.prepareStatement(sql);
+	        statement.setInt(1, generateAdminID()); // Generate and set the admin ID
+	        statement.setString(2, admin.getFirstName());
+	        statement.setString(3, admin.getLastName());
+	        statement.setString(4, admin.getEmail());
+	        statement.setString(5, admin.getPassword());
+
+	        statement.executeUpdate();
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        closeConnection(connection);
+	    }
+	}
+
+	@Override
+	public int generateCustomerID() {
+	    // Generate a random 4-digit customer ID
+	    return generateRandomID(4);
+	}
+
+	@Override
+	public int generateAdminID() {
+	    // Generate a random 3-digit admin ID
+	    return generateRandomID(3);
+	}
+
+	private int generateRandomID(int length) {
+	    Random random = new Random();
+	    int min = (int) Math.pow(10, length - 1);
+	    int max = (int) Math.pow(10, length) - 1;
+	    return random.nextInt(max - min + 1) + min;
+	}
+	
+	@Override
+    public Customer getCustomerByEmail(String email) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Customer customer = null;
+
+        try {
+            connection = getConnection();
+
+            String query = "SELECT * FROM Customer WHERE email = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                customer = new Customer();
+                customer.setId(resultSet.getInt("id"));
+                customer.setFirstName(resultSet.getString("firstName"));
+                customer.setLastName(resultSet.getString("lastName"));
+                customer.setEmail(resultSet.getString("email"));
+                customer.setPassword(resultSet.getString("password"));
+                // Set other fields if needed
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception
+        } finally {
+            // Close the resources: resultSet, preparedStatement, connection
+            closeResources(resultSet, preparedStatement, connection);
+        }
+
+        return customer;
+    }
+
+    @Override
+    public Admin getAdminByEmail(String email) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Admin admin = null;
+
+        try {
+            connection = getConnection();
+
+            String query = "SELECT * FROM Admin WHERE email = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                admin = new Admin();
+                admin.setAdminID(resultSet.getInt("adminID"));
+                admin.setFirstName(resultSet.getString("firstName"));
+                admin.setLastName(resultSet.getString("lastName"));
+                admin.setEmail(resultSet.getString("email"));
+                admin.setPassword(resultSet.getString("password"));
+                // Set other fields if needed
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception
+        } finally {
+            // Close the resources: resultSet, preparedStatement, connection
+            closeResources(resultSet, preparedStatement, connection);
+        }
+
+        return admin;
+    }
+
+    private void closeResources(ResultSet resultSet, PreparedStatement preparedStatement, Connection connection) {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (preparedStatement != null) {
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }
 

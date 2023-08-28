@@ -61,6 +61,12 @@
         .login-button:hover {
             background-color: #2980b9;
         }
+
+        .login-error {
+            color: red;
+            text-align: center;
+            margin-top: 1em;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +76,15 @@
     
     <div class="main-content">
         <h1>Sign In</h1>
-        <form action="LoginServlet" method="post">
+        
+        <div class="login-error">
+            <% String loginError = (String) request.getAttribute("loginError");
+            if (loginError != null) { %>
+                <p><strong><%= loginError %></strong></p>
+            <% } %>
+        </div>
+        
+        <form action="LoginSignInServlet" method="post">
             <input type="hidden" name="action" value="login">
             
             <label for="username">Username:</label>

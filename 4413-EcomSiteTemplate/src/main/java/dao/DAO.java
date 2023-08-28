@@ -33,5 +33,21 @@ public interface DAO {
     public List<Item> getImage();
     
     List<Item> getRandomItems(int count);
-	
+    
+    // Register a customer
+    void registerCustomer(Customer customer);
+
+    // Register an admin
+    void registerAdmin(Admin admin);
+
+    // Generate a random customer ID (4 digits)
+    int generateCustomerID();
+
+    // Generate a random admin ID (3 digits)
+    int generateAdminID();
+    
+    Customer getCustomerByEmail(String email);
+    
+    Admin getAdminByEmail(String email);
+
 }

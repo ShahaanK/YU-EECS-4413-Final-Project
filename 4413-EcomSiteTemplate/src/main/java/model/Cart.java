@@ -11,10 +11,9 @@ public class Cart {
    public Cart() {
       cart = new ArrayList<Item>();
    }
- 
-   // Add a Item into this Cart
+
 // Add a Item into this Cart
-public void add(String productID, String productName, String colour, int quantity, double price, String image, String category, String brand) {
+   	public void add(String productID, String productName, String colour, int quantity, double price, String image, String category, String brand) {
     // Check if the id is already in the shopping cart
     Iterator<Item> iter = cart.iterator();
     while (iter.hasNext()) {
@@ -31,7 +30,7 @@ public void add(String productID, String productName, String colour, int quantit
 }
 
 // Update the quantity for the given id
-public boolean update(String id, int newQty) {
+   	public boolean update(String id, int newQty) {
     Iterator<Item> iter = cart.iterator();
     while (iter.hasNext()) {
         Item item = iter.next();
@@ -45,7 +44,7 @@ public boolean update(String id, int newQty) {
 }
 
 // Remove a Item given its id
-public void remove(String id) {
+   	public void remove(String id) {
     Iterator<Item> iter = cart.iterator();
     while (iter.hasNext()) {
         Item item = iter.next();
