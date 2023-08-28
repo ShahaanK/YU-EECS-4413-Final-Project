@@ -5,17 +5,16 @@
 <link rel="stylesheet" type="text/css" href="css/index.css">
 
 <header>
+<div class="test1">
     <div class="title">
         <h1>THE VIBEZ</h1>
     </div>
     
     <div class="top-buttons">
     <!-- intitParam points to web.xml -> context-param param1 which goes to QueryServlet -->
-		<div class="cart">
         <a href="${pageContext.request.contextPath}/jsp/cart.jsp">
-            <img src="${pageContext.request.contextPath}images/icon/icon.png" alt="Shopping Cart">
+            <img src="images/icon/icon.png" alt="Shopping Cart">
         </a>
-    </div>
     
 		<a href="${pageContext.request.contextPath}/jsp/login.jsp">Sign In</a>
         <a href="${pageContext.request.contextPath}/jsp/createAccount.jsp">Register</a>
@@ -63,6 +62,6 @@
     -->
 
     <!-- Search form -->
-
+</div>
 </div>
 </header>

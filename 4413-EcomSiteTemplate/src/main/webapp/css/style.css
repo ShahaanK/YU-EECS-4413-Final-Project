@@ -1,137 +1,73 @@
-/* Basic styling */
-body {
-    font-family: Arial, sans-serif;
-}
-header {
-    background-color: #f4f4f4;
-    padding: 10px;
-    text-align: left;
-    font-size: 36px;
-}
-.header-right {
-    float: right;
-}
-nav {
-    text-align: center;
-    background-color: #333;
-}
-nav a {
-    padding: 14px 20px;
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-}
-.main-content {
-    margin: 50px;
-    padding: 20px;
-    background-color: #f9f9f9;
-}
-.main-content form input[type="text"],
-.main-content form input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-}
-.main-content form input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    border: none;
-}
-.login-button {
-    background-color: #008CBA;
-    color: white;
-    padding: 14px 20px;
-    border: none;
-}
-/* ===================================== Bellow is the index.html*/
+ /* Additional styles for the Shopping Cart page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Basic Styling */
+        h1 {
+            background-color: #343a40;
+            color: white;
+            padding: 1em;
+            margin: 0;
+            text-align: center;
+        }
+        h2{
+			background-color: powderblue;
+				
+		}2
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-/* Header Styles */
+        .cart-table th, .cart-table td {
+            padding: 0.5em;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 7.5px;
-}
+        .cart-table th {
+            background-color: #343a40;
+            color: white;
+        }
 
-header a {
-    color: white;
-    margin: 15px;
-    text-decoration: none;
-}
+        .product-image {
+            max-width: 100px;
+            max-height: 100px;
+        }
 
-.title {
-    float: left;
-}
+        .quantity-input {
+            width: 50px;
+            padding: 0.2em;
+        }
 
-.top-buttons {
-    float: right;
-}
+        .update-button, .remove-button {
+            background-color: #343a40;
+            color: white;
+            border: none;
+            padding: 0.3em 0.5em;
+            cursor: pointer;
+        }
 
-.search-bar {
-    float: right;
-    margin-top: -2.5em;
-}
+        .footer-buttons {
+            text-align: center;
+            margin-top: 2em;
+        }
 
-nav {
-    clear: both;
-}
-
-nav a {
-    margin: 15px;
-}
-
-/* Dropdown Styles */
-
-.brand-container {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    margin-top: 1em;
-}
-
-.brand-trigger:hover + .dropdown, .dropdown:hover {
-    display: block;
-}
-
-/* Catalog Styles */
-
-.catalog {
-    margin: 20px;
-}
-
-.catalog img {
-    width: 150px;
-    height: 200px;
-}
-
-.product {
-    display: inline-block;
-    margin: 15px;
-}
-
-.product-info {
-    text-align: center;
-}
-
-/* Media Queries for Responsiveness */
-
-@media only screen and (max-width: 600px) {
-    .product {
-        display: block;
-        margin: 15px auto;
-    }
-}
+        .continue-button, .checkout-button {
+            background-color: #343a40;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+             margin: 1em 0;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 1em;
+        }

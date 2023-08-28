@@ -1,10 +1,11 @@
 <%@ page import="model.Cart, model.Item" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Shopping Cart</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!--FIX STYLE-->
     <style>
         /* Additional styles for the Shopping Cart page */
         body {
@@ -98,7 +99,7 @@
                     %>
                         <tr>
                             <td><%= item.getProductName() %></td>
-                            <td><img src="<%= item.getImage() %>" alt="<%= item.getProductName() %>" class="product-image"></td>
+                            <td><img src="images/<%= item.getImage() %>" alt="<%= item.getProductName() %>" class="product-image"></td>
                             <td><%= item.getProductID() %></td>
                             <td>
     <form action="CartServlet" method="post">
@@ -108,7 +109,19 @@
         <button type="submit" class="update-button">Update</button>
     </form>
 </td>
-<td><%= item.getPrice() * item.getQuantity() %></td>
+<td>
+
+<!-- Round the number -->
+<%
+    double unroundedValue = item.getPrice() * item.getQuantity();
+    String roundedValue = String.format("%.2f", unroundedValue);
+%>
+<%= 
+roundedValue%>
+
+<!-- End Round the number -->
+
+</td>
 <td>
     <form action="CartServlet" method="post">
         <input type="hidden" name="action" value="remove">

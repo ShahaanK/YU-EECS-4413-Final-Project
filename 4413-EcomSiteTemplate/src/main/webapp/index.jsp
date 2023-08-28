@@ -5,21 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>THE VIBEZ - Home</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <style>
-        /* Add your custom styles here */
-        .welcome-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-size: 48px; /* Larger font size */
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none; /* Remove underline */
-            color: #000; /* Set link color */
-        }
-    </style>
 </head>
 <body>
 

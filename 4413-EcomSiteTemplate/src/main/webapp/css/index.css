@@ -14,6 +14,12 @@ header {
     color: white;
     padding: 15px;
 }
+.test1{
+	background-color: #333;
+    color: white;
+    padding: 15px;
+
+}
 
 header a {
     color: white;
@@ -27,6 +33,12 @@ header a {
 
 .top-buttons {
     float: right;
+}
+
+.top-buttons img{
+	position: relative;
+	 width: 25px;
+    height: 25px;
 }
 
 .cart {
@@ -106,7 +118,19 @@ nav a:hover + .dropdown, .dropdown:hover {
 .product-info {
     text-align: center;
 }
+/*This is for the home page Welcome Message*/
 
+.welcome-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-size: 48px; /* Larger font size */
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline */
+            color: #000; /* Set link color */
+        }
 /* Media Queries for Responsiveness */
 
 @media only screen and (max-width: 600px) {
