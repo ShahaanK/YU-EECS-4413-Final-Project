@@ -22,13 +22,6 @@ import model.ProductOrder;
 @WebServlet("/PaymentServlet")
 public class PaymentServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private DAO dao;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        dao = new DAOImpl();
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,76 +29,92 @@ public class PaymentServlet extends HttpServlet {
         String expirationDate = request.getParameter("expirationDate");
         String cvv = request.getParameter("cvv");
 
-        boolean isValidCard = validateCardInformation(cardNumber, expirationDate, cvv);
-
-        if (isValidCard) {
-            int lastDigit = Character.getNumericValue(cardNumber.charAt(cardNumber.length() - 1));
-            boolean paymentSuccess = (lastDigit % 2 == 1);
-
-            if (paymentSuccess) {
-                int paymentID = generateRandomID();; // Generate payment ID
-                int orderID = extractOrderIDFromSession(request); // Obtain order ID from session or application logic
-
-                Payment payment = new Payment(paymentID, cardNumber, expirationDate, cvv, orderID);
-                dao.insertPayment(payment);
-
-                String paymentMessage = "Order Successfully Completed.";
-                request.setAttribute("paymentMessage", paymentMessage);
-                request.setAttribute("orderID", orderID); // Set orderID attribute
-                request.setAttribute("paymentID", paymentID); // Set paymentID attribute
-                request.setAttribute("cardNumber", cardNumber);
-                request.setAttribute("expirationDate", expirationDate);
-                request.setAttribute("cvv", cvv);
-            } else {
-                String errorMessage = "Credit Card Authorization Failed.";
-                request.setAttribute("errorMessage", errorMessage);
-            }
-
-            request.getRequestDispatcher("/jsp/paymentResult.jsp").forward(request, response);
-        } else {
-            String errorMessage = "Invalid Card Information.";
-            request.setAttribute("errorMessage", errorMessage);
-            request.getRequestDispatcher("/jsp/paymentResult.jsp").forward(request, response);
-        }
-    }
-
-    private boolean validateCardInformation(String cardNumber, String expirationDate, String cvv) {
-        // Implement card information validation logic here
-        // Example validation:
-        boolean isCardValid = true;
-
-        if (!cardNumber.matches("\\d{16}")) {
-            isCardValid = false;
-        }
-
-        if (!expirationDate.matches("\\d{2}/\\d{2}")) {
-            isCardValid = false;
-        }
-
-        if (!cvv.matches("\\d{3}")) {
-            isCardValid = false;
-        }
-
-        return isCardValid;
-    }
-
-    private int generateRandomID() {
+        // Generate a random 6-digit order ID
         Random random = new Random();
-        return random.nextInt(1000000); // Adjust the range as needed
-    }
-    private int extractOrderIDFromSession(HttpServletRequest request) {
+        int orderID = random.nextInt(900000) + 100000;
+
+        Payment payment = new Payment();
+        payment.setCardNum(cardNumber);
+        payment.setExpir(expirationDate);
+        payment.setCvv(cvv);
+
+        // Get the order ID from the session (assuming you have stored it during the order process)
         HttpSession session = request.getSession();
-        int orderID = 1; // Default value if order ID is not found
+        int customerID = (int) session.getAttribute("customerID"); // Replace with the actual attribute name
+        String dateOfPurchase = ""; // Replace with the actual date of purchase
 
-        Object orderIDObj = session.getAttribute("orderID");
+        // Save the payment using DAO
+        DAO dao = new DAOImpl(); // Create an instance of your DAO implementation
+        try {
+            // Save the payment and get the payment ID
+            int paymentID = dao.savePayment(payment, orderID);
 
-        if (orderIDObj != null && orderIDObj instanceof Integer) {
-            orderID = (Integer) orderIDObj;
+            // Create ProductOrder object with necessary details
+            ProductOrder order = new ProductOrder();
+            order.setId(orderID); // Set the generated order ID
+            order.setCustomerID(customerID); // Set the actual customer ID
+            order.setDateOfPurchase(dateOfPurchase); // Set the actual date of purchase
+            order.setTotalPrice(0.0); // Replace with the actual total price
+
+            // Save the order and get the generated order ID
+            dao.saveProductOrder(order);
+
+            // Set attributes for payment result JSP
+            request.setAttribute("paymentMessage", "Order Successfully Completed.");
+            request.setAttribute("orderID", orderID);
+            request.setAttribute("paymentID", paymentID);
+            request.setAttribute("cardNumber", cardNumber); // You can mask the card number if needed
+            request.setAttribute("expirationDate", expirationDate);
+            request.setAttribute("cvv", cvv);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception
+            request.setAttribute("paymentError", "An error occurred while processing the payment.");
+            request.getRequestDispatcher("/jsp/payment.jsp").forward(request, response);
+            return;
         }
 
-        return orderID;
+        // Validate cardNumber (16 digits)
+        if (!cardNumber.matches("\\d{16}")) {
+            request.setAttribute("paymentError", "Invalid card number. Card number must be 16 digits.");
+            request.getRequestDispatcher("/jsp/payment.jsp").forward(request, response);
+            return;
+        }
+
+        // Validate expirationDate (mm/yy format)
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yy");
+        try {
+            Date expDate = dateFormat.parse(expirationDate);
+            if (expDate.before(new Date())) {
+                request.setAttribute("paymentError", "Invalid expiration date. Expiration date must be in the future.");
+                request.getRequestDispatcher("/jsp/payment.jsp").forward(request, response);
+                return;
+            }
+        } catch (ParseException e) {
+            request.setAttribute("paymentError", "Invalid expiration date format. Use mm/yy format.");
+            request.getRequestDispatcher("/jsp/payment.jsp").forward(request, response);
+            return;
+        }
+
+        // Validate cvv (3 digits)
+        if (!cvv.matches("\\d{3}")) {
+            request.setAttribute("paymentError", "Invalid CVV. CVV must be 3 digits.");
+            request.getRequestDispatcher("/jsp/payment.jsp").forward(request, response);
+            return;
+        }
+
+        int lastDigit = Integer.parseInt(cardNumber.substring(cardNumber.length() - 1));
+        if (lastDigit % 2 == 0) {
+            request.setAttribute("paymentMessage", "Payment declined.");
+            request.getRequestDispatcher("/jsp/paymentResult.jsp").forward(request, response);
+            return;
+        } else {
+
+            request.setAttribute("paymentMessage", "Payment successful!");
+            request.getRequestDispatcher("/jsp/paymentResult.jsp").forward(request, response);
+            return;
+
+        }
+
     }
-    
-
- }
-
+}

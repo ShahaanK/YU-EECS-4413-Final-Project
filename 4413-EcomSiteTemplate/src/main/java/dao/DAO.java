@@ -51,11 +51,9 @@ public interface DAO {
     
     Admin getAdminByEmail(String email);
     
-    public void insertPayment(Payment payment);
+    int savePayment(Payment payment, int orderID) throws SQLException;
     
-    public List<Payment> getAllPayments();
-    public List<ProductOrder> getAllOrders();
-    
+    int saveProductOrder(ProductOrder order) throws SQLException;
 
 
 }
