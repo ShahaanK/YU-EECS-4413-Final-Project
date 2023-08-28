@@ -4,81 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/loginDraw.css">
+    
     <title>Account Creation</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-
-        .header {
-            background-color: #3498db;
-            color: white;
-            text-align: center;
-            padding: 1em;
-        }
-
-        .main-content {
-            max-width: 400px;
-            margin: 2em auto;
-            padding: 3em;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-top: 1em;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="password"] {
-            width: 100%;
-            padding: 0.5em;
-            margin: 0.3em 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        .create-account-button {
-            display: block;
-            width: 100%;
-            padding: 0.5em;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .create-account-button:hover {
-            background-color: #2980b9;
-        }
-
-        .login-link {
-            display: block;
-            text-align: center;
-            margin-top: 1em;
-        }
-               /* Styles for select element */
-        select {
-            width: 100%;
-            padding: 0.5em;
-            margin: 0.3em 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-    </style>
+   
     <script>
         function toggleFields() {
             var accountType = document.getElementById("accountType").value;
@@ -129,10 +58,10 @@
             <input type="text" name="postalCode" placeholder="Postal Code" class="customer-fields">
             <input type="tel" name="phoneNumber" placeholder="Phone Number" class="customer-fields">
             
-            <button class="create-account-button">Create Account</button>
+            <button class="login-button">Create Account</button>
         </form>
         
-        <a class="login-link" href="/4413-EcomSiteTemplate/jsp/login.jsp">Already have an account? Login here</a>
+        <button class="login-button" href="/4413-EcomSiteTemplate/jsp/login.jsp">Already have an account? Login here</button>
     </div>
 </body>
 </html>
