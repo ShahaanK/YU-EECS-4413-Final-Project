@@ -1,4 +1,5 @@
 package model;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -77,13 +78,13 @@ public class Cart {
    }
 
    public double calculateTotalPrice() {
-	   // TODO Auto-generated method stub
-	   double totalPrice = 0.0;
+       double totalPrice = 0.0;
 
-	    for (Item item : cart) {
-	        totalPrice += item.getPrice() * item.getQuantity();
-	    }
+       for (Item item : cart) {
+           totalPrice += item.getPrice() * item.getQuantity();
+       }
 
-	    return totalPrice;
+       DecimalFormat decimalFormat = new DecimalFormat("0.00");
+       return Double.parseDouble(decimalFormat.format(totalPrice));
    }
 }
