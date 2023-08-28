@@ -101,28 +101,38 @@ public class LoginSignInServlet extends HttpServlet {
 
         Customer customer = dao.getCustomerByEmail(username);
         Admin admin = dao.getAdminByEmail(username);
+        HttpSession session = request.getSession();
+        Object loggedInUser = session.getAttribute("user");
+
+        if (loggedInUser != null) {
+            // User is already logged in
+            response.sendRedirect(request.getContextPath() + "/jsp/alreadyLoggedIn.jsp");
+            return;
+        }
 
         if (customer != null && customer.getPassword().equals(password)) {
             // Customer login successful
-            HttpSession session = request.getSession();
             session.setAttribute("user", customer);
-            
+
+            System.out.println("Customer logged in: " + customer.getEmail());
+
             // Create a cookie with user identifier
             Cookie cookie = new Cookie("loggedInUser", "customer");
             cookie.setMaxAge(3600); // Set cookie expiration time (in seconds)
             response.addCookie(cookie);
-            
+
             response.sendRedirect(request.getContextPath() + "/jsp/successLogin.jsp");
         } else if (admin != null && admin.getPassword().equals(password)) {
             // Admin login successful
-            HttpSession session = request.getSession();
             session.setAttribute("user", admin);
-            
+
+            System.out.println("Admin logged in: " + admin.getEmail());
+
             // Create a cookie with user identifier
             Cookie cookie = new Cookie("loggedInUser", "admin");
             cookie.setMaxAge(3600); // Set cookie expiration time (in seconds)
             response.addCookie(cookie);
-            
+
             response.sendRedirect(request.getContextPath() + "/jsp/successLogin.jsp");
         } else {
             // Login failed
@@ -130,6 +140,7 @@ public class LoginSignInServlet extends HttpServlet {
             request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
         }
     }
+
 
     // Method to generate a random 3-digit admin ID
     private int generateAdminID() {

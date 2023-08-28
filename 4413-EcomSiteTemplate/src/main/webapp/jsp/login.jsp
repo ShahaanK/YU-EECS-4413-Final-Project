@@ -82,6 +82,11 @@
             if (loginError != null) { %>
                 <p><strong><%= loginError %></strong></p>
             <% } %>
+            
+            <% String alreadyLoggedInError = (String) request.getAttribute("alreadyLoggedInError");
+            if (alreadyLoggedInError != null) { %>
+                <p><strong><%= alreadyLoggedInError %></strong></p>
+            <% } %>
         </div>
         
         <form action="/4413-EcomSiteTemplate/LoginSignInServlet" method="post">
