@@ -24,7 +24,7 @@
 
     </div>
     <div class="search-bar">
-        <form action="QueryServlet" method="post">
+        <form action="/4413-EcomSiteTemplate/QueryServlet" method="post">
         	<input type="hidden" name="action" value="search">
         	<input type="text" name="keyWord" placeholder="Search...">
             <input type="submit" value="Search">

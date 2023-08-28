@@ -633,6 +633,71 @@ public class DAOImpl implements DAO {
             }
         }
     }
+    
+    public int saveProductOrder(ProductOrder order) throws SQLException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int generatedOrderId = -1;
+
+        try {
+            connection = getConnection();
+            String sql = "INSERT INTO ProductOrder (customerID, dateOfPurchase, totalPrice) VALUES (?, ?, ?)";
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, order.getCustomerID());
+            statement.setString(2, order.getDateOfPurchase());
+            statement.setDouble(3, order.getTotalPrice());
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        generatedOrderId = generatedKeys.getInt(1);
+                    }
+                }
+            }
+        } finally {
+            closeStatement(statement);
+            closeConnection(connection);
+        }
+
+        return generatedOrderId;
+    }
+
+    public int savePayment(Payment payment, int orderID) throws SQLException {
+        String insertPaymentQuery = "INSERT INTO Payment (cardNum, expiration, CVV, orderID) VALUES (?, ?, ?, ?)";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(insertPaymentQuery, Statement.RETURN_GENERATED_KEYS)) {
+
+            preparedStatement.setString(1, payment.getCardNum());
+            preparedStatement.setString(2, payment.getExpir());
+            preparedStatement.setString(3, payment.getCvv());
+            preparedStatement.setInt(4, orderID);
+
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating payment failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating payment failed, no ID obtained.");
+                }
+            }
+        }
+    }
+    
+    private void closeStatement(PreparedStatement statement) {
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
 
 }

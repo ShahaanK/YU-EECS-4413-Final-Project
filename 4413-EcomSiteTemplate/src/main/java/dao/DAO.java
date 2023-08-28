@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.Item;
@@ -49,5 +50,10 @@ public interface DAO {
     Customer getCustomerByEmail(String email);
     
     Admin getAdminByEmail(String email);
+    
+    int savePayment(Payment payment, int orderID) throws SQLException;
+    
+    int saveProductOrder(ProductOrder order) throws SQLException;
+
 
 }

@@ -6,7 +6,6 @@
     <title>Shopping Cart</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
-        /* Additional styles for the Shopping Cart page */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -69,7 +68,7 @@
             color: white;
             border: none;
             padding: 0.5em 1em;
-             margin: 1em 0;
+            margin: 1em 0;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
@@ -79,7 +78,7 @@
 </head>
 <body>
     <h1>Your Shopping Cart</h1>
-    <form action="CartServlet" method="post">
+    <form action="/4413-EcomSiteTemplate/CartServlet" method="post"> 
         <table class="cart-table">
             <thead>
                 <tr>
@@ -94,36 +93,39 @@
             <tbody>
                 <% 
                 Cart cart = (Cart) session.getAttribute("cart");
-                for (Item item : cart.getItems()) { 
-                    %>
-                        <tr>
-                            <td><%= item.getProductName() %></td>
-                            <td><img src="<%= item.getImage() %>" alt="<%= item.getProductName() %>" class="product-image"></td>
-                            <td><%= item.getProductID() %></td>
-                            <td>
-    <form action="CartServlet" method="post">
-        <input type="hidden" name="action" value="update">
-        <input type="hidden" name="productIDToUpdate" value="<%= item.getProductID() %>">
-        <input type="number" name="quantity_<%= item.getProductID() %>" value="<%= item.getQuantity() %>" min="1" class="quantity-input">
-        <button type="submit" class="update-button">Update</button>
-    </form>
-</td>
-<td><%= item.getPrice() * item.getQuantity() %></td>
-<td>
-    <form action="CartServlet" method="post">
-        <input type="hidden" name="action" value="remove">
-        <input type="hidden" name="productIDToRemove" value="<%= item.getProductID() %>">
-        <button type="submit" class="remove-button">Remove</button>
-    </form>
-</td>
-                        </tr>
-                    <% } %>
+                if (cart != null) {
+                    for (Item item : cart.getItems()) { 
+                %>
+                <tr>
+                    <td><%= item.getProductName() %></td>
+                    <td><img src="<%= item.getImage() %>" alt="<%= item.getProductName() %>" class="product-image"></td>
+                    <td><%= item.getProductID() %></td>
+                    <td>
+                        <form action="/4413-EcomSiteTemplate/CartServlet" method="post">
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="productIDToUpdate" value="<%= item.getProductID() %>">
+                            <input type="number" name="quantity_<%= item.getProductID() %>" value="<%= item.getQuantity() %>" min="1" class="quantity-input">
+                            <button type="submit" class="update-button">Update</button>
+                        </form>
+                    </td>
+                    <td><%= item.getPrice() * item.getQuantity() %></td>
+                    <td>
+                        <form action="/4413-EcomSiteTemplate/CartServlet" method="post"> 
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="productIDToRemove" value="<%= item.getProductID() %>">
+                            <button type="submit" class="remove-button">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                <% 
+                    } 
+                } %>
             </tbody>
         </table>
     </form>
     
     <div class="footer-buttons">
-        <form action="index.jsp" method="get">
+        <form action="/4413-EcomSiteTemplate/index.jsp" method="get">
             <button type="submit" class="continue-button">Continue Shopping</button>
         </form>
         
