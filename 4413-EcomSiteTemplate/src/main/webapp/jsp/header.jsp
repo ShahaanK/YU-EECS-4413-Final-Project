@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <!-- header.jsp -->
@@ -34,9 +35,11 @@
         <a href="/4413-EcomSiteTemplate/QueryServlet?action=allItems">All Clothes</a>
         <a href="#">Brands</a>
         <div class="dropdown">
-            <a href="#">Brand 1</a>
-            <a href="#">Brand 2</a>
-            <a href="#">Brand 3</a>
+        
+        <c:forEach var="item" items="${itemList}">
+            <a href="/4413-EcomSiteTemplate/QueryServlet?action=allTops"><c:out value="${item.brand}" /></a>
+		</c:forEach>
+		
         </div>
         <a href="#">Category</a>
         <div class="dropdown">
@@ -45,6 +48,14 @@
         </div>
     </nav>
     <div class="sortButton">
+    
+    <!--  making a for loop for this -->
+      <!-------------------------------------------------------------------------------->
+        
+
+       <!---------------------------------------------------------------------------------------->
+    
+    
     <!-- Sorting options -->
     <!-- Sorting options -->
     <!--<form action="QueryServlet" method="post">
