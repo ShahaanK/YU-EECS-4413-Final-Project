@@ -84,10 +84,10 @@
             <% } %>
         </div>
         
-        <form action="LoginSignInServlet" method="post">
+        <form action="/4413-EcomSiteTemplate/LoginSignInServlet" method="post">
             <input type="hidden" name="action" value="login">
             
-            <label for="username">Username:</label>
+            <label for="username">Username(email):</label>
             <input type="text" id="username" name="username" required>
             
             <label for="password">Password:</label>

@@ -86,17 +86,36 @@ public class LoginSignInServlet extends HttpServlet {
             request.setAttribute("registeredEmail", email);
         }
 
-        request.getRequestDispatcher("/jsp/register.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/registerSuccess.jsp").forward(request, response);
     }
 
     private void handleLogin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Implement login logic here
-        // You can retrieve login credentials from request parameters
-        // Query the database to check if the credentials are valid
-        // If valid, redirect to the appropriate page
-        // If not valid, show an error message or redirect to a login error page
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        DAO dao = new DAOImpl();
+
+        Customer customer = dao.getCustomerByEmail(username);
+        Admin admin = dao.getAdminByEmail(username);
+
+        if (customer != null && customer.getPassword().equals(password)) {
+            // Customer login successful
+            request.getSession().setAttribute("user", customer);
+            response.sendRedirect(request.getContextPath() + "/jsp/successLogin.jsp");
+        } else if (admin != null && admin.getPassword().equals(password)) {
+            // Admin login successful
+            request.getSession().setAttribute("user", admin);
+            response.sendRedirect(request.getContextPath() + "/jsp/successLogin.jsp");
+        } else {
+            // Login failed
+            request.setAttribute("loginError", "Invalid username or password");
+            request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+        }
+
     }
+
+
 
     // Method to generate a random 3-digit admin ID
     private int generateAdminID() {
