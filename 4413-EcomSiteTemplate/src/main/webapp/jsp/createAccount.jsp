@@ -110,7 +110,7 @@
     
     <div class="main-content">
         <h1>Create an Account</h1>
-        <form action="/4413-EcomSiteTemplate/LoginServlet" method="post">
+        <form action="/4413-EcomSiteTemplate/LoginSignInServlet" method="post">
             <input type="hidden" name="action" value="register">
             <select id="accountType" name="accountType" onchange="toggleFields()">
                 <option value="customer">Customer</option>

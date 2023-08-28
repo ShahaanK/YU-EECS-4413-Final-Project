@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Cart;
+import model.Item;
 
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
@@ -17,7 +18,7 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        String url = "/jsp/cart.jsp";
+        String url = "/jsp/cart.jsp"; // Replace with your JSP file path
 
         if (action != null) {
             switch (action) {
@@ -33,7 +34,6 @@ public class CartServlet extends HttpServlet {
 
                     Cart cart = getOrCreateCart(request);
                     cart.add(productID, productName, colour, quantity, price, image, category, brand);
-                    // Log the added item
                     System.out.println("Added to cart: " + productName);
                     break;
                     
@@ -60,9 +60,9 @@ public class CartServlet extends HttpServlet {
 
             }
         }
-
         request.getSession().setAttribute("cart", getOrCreateCart(request));
         request.getRequestDispatcher(url).forward(request, response);
+
     }
 /*  getOrCreateCart(HttpServletRequest request): This method checks if a Cart object exists in the session. 
  * If it does, it returns the existing Cart object. 

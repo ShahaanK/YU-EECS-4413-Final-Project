@@ -54,6 +54,14 @@
 </head>
 <body>
     <h1>Payment Information</h1>
+    <div class="payment-error">
+    <p class="error-message">
+        <% String paymentError = (String) request.getAttribute("paymentError");
+        if (paymentError != null) { %>
+            <%= paymentError %>
+        <% } %>
+    </p>
+</div>
     <form action="/4413-EcomSiteTemplate/PaymentServlet" method="post">
         <label for="cardNumber">Card Number:</label>
         <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxxxxxxxxxxxxxx" required><br>
