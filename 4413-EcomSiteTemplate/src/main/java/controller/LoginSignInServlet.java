@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import model.Address;
 import model.Admin;
 import model.Customer;
@@ -101,21 +104,32 @@ public class LoginSignInServlet extends HttpServlet {
 
         if (customer != null && customer.getPassword().equals(password)) {
             // Customer login successful
-            request.getSession().setAttribute("user", customer);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", customer);
+            
+            // Create a cookie with user identifier
+            Cookie cookie = new Cookie("loggedInUser", "customer");
+            cookie.setMaxAge(3600); // Set cookie expiration time (in seconds)
+            response.addCookie(cookie);
+            
             response.sendRedirect(request.getContextPath() + "/jsp/successLogin.jsp");
         } else if (admin != null && admin.getPassword().equals(password)) {
             // Admin login successful
-            request.getSession().setAttribute("user", admin);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", admin);
+            
+            // Create a cookie with user identifier
+            Cookie cookie = new Cookie("loggedInUser", "admin");
+            cookie.setMaxAge(3600); // Set cookie expiration time (in seconds)
+            response.addCookie(cookie);
+            
             response.sendRedirect(request.getContextPath() + "/jsp/successLogin.jsp");
         } else {
             // Login failed
             request.setAttribute("loginError", "Invalid username or password");
             request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
         }
-
     }
-
-
 
     // Method to generate a random 3-digit admin ID
     private int generateAdminID() {
