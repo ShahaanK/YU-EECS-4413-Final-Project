@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <!-- header.jsp -->
 <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -16,11 +17,16 @@
         <a href="${pageContext.request.contextPath}/jsp/cart.jsp">
             <img src="images/icon/icon.png" alt="Shopping Cart">
         </a>
-    
-		<a href="${pageContext.request.contextPath}/jsp/login.jsp">Sign In</a>
-        <a href="${pageContext.request.contextPath}/jsp/createAccount.jsp">Register</a>
-     <!-- Make it so the Admin moves to login page if it is not logged in-->
-        <a href="${pageContext.request.contextPath}/jsp/admin.jsp">Admin</a>
+		<c:choose>
+        <c:when test="${user != null}">
+            <a href="/4413-EcomSiteTemplate//LogoutServlet">Log Out</a>
+            <a href="/4413-EcomSiteTemplate//AdminServlet">Admin</a>
+        </c:when>
+        <c:otherwise>
+            <a href="${pageContext.request.contextPath}/jsp/login.jsp">Sign In</a>
+            <a href="${pageContext.request.contextPath}/jsp/createAccount.jsp">Register</a>
+        </c:otherwise>
+    </c:choose>
 
     </div>
     <div class="search-bar">

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="css/index.css">
 <head>
     <title>Login Successful</title>
 
@@ -10,7 +11,7 @@
         // Redirect to main page after 5 seconds
         setTimeout(function() {
             window.location.href = "${pageContext.request.contextPath}/index.jsp";
-        }, 5000); // 5000 milliseconds = 5 seconds
+        }, 5000); 
     </script>
 </head>
 <body>

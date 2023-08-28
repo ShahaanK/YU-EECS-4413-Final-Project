@@ -58,6 +58,7 @@ public class QueryServlet extends HttpServlet {
 		String action = request.getParameter("action");
         String category = request.getParameter("category");
         String keyWord = request.getParameter("keyWord");
+        String brand = request.getParameter("brand");
 		if (action != null) {
 			switch (action) {
 			
@@ -65,10 +66,6 @@ public class QueryServlet extends HttpServlet {
 			case "allItems":
                 findAllItems(request, response);
                 url = "/jsp/allClothes.jsp";
-                break;
-            case "allBrands":
-                findByBrand(request, response, category);
-                url = base + "catalog.jsp";
                 break;
             case "search":
                 searchKeyword(request, response, keyWord);
@@ -101,7 +98,12 @@ public class QueryServlet extends HttpServlet {
             case "main":
             	displayRandomItems(request, response);
             	url = "/jsp/main.jsp";
-            	break;
+            	break;	
+            case "searchByBrand":
+                String selectedBrand = request.getParameter("brand"); // Get the selected brand name
+                searchByBrand(request, response, selectedBrand);
+                url = "/jsp/searchResult.jsp"; // Change this URL to the appropriate JSP
+                break;
             	
 			}
 		}
@@ -139,19 +141,6 @@ public class QueryServlet extends HttpServlet {
 		}
 	}
 	
-	private void findByBrand(HttpServletRequest request,HttpServletResponse response, String cate)
-			throws ServletException, IOException {
-		try {
-			// calling DAO method to retrieve all items
-			List<Item> itemList = itemDAO.findByBrand(cate);
-						
-			// CHANGE HERE 
-			request.setAttribute("itemList", itemList);
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
 	
 	private void sortItemsByPriceHtL(HttpServletRequest request, HttpServletResponse response, boolean ascending)
             throws ServletException, IOException {
@@ -214,5 +203,17 @@ public class QueryServlet extends HttpServlet {
         }
     }
     
+    private void searchByBrand(HttpServletRequest request, HttpServletResponse response, String selectedBrand)
+            throws ServletException, IOException {
+        try {
+            // Calling DAO method to retrieve items by brand
+            List<Item> itemList = itemDAO.findByBrand(selectedBrand);
+
+            // Set the item list attribute
+            request.setAttribute("itemList", itemList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 	
 }

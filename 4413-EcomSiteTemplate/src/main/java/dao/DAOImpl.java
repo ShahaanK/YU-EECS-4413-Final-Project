@@ -34,7 +34,7 @@ public class DAOImpl implements DAO {
 		String shahaan = "C:\\Users\\shaha\\OneDrive\\Desktop\\4413 - E-Comm\\Project\\4413DB.db";
 		String tracy = "//Users//miaonya//Desktop//4413DB.db";
 		String mediya = "//put your path here";
-		return DriverManager.getConnection("jdbc:sqlite:" + shahaan);//replace the name with yours's
+		return DriverManager.getConnection("jdbc:sqlite:" + tracy);//replace the name with yours's
 
 	}
 
@@ -170,8 +170,7 @@ public class DAOImpl implements DAO {
 		
 		List<Item> result = new ArrayList<Item>();
 
-		String sql = "SELECT * from Item"
-				+ "where item.brand = '" + name +"'";
+		String sql = "SELECT * FROM Item WHERE brand = ?";
 		
 		Connection connection = null;
 		try {
@@ -634,70 +633,6 @@ public class DAOImpl implements DAO {
         }
     }
     
-    public int saveProductOrder(ProductOrder order) throws SQLException {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        int generatedOrderId = -1;
-
-        try {
-            connection = getConnection();
-            String sql = "INSERT INTO ProductOrder (customerID, dateOfPurchase, totalPrice) VALUES (?, ?, ?)";
-            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, order.getCustomerID());
-            statement.setString(2, order.getDateOfPurchase());
-            statement.setDouble(3, order.getTotalPrice());
-
-            int affectedRows = statement.executeUpdate();
-
-            if (affectedRows > 0) {
-                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        generatedOrderId = generatedKeys.getInt(1);
-                    }
-                }
-            }
-        } finally {
-            closeStatement(statement);
-            closeConnection(connection);
-        }
-
-        return generatedOrderId;
-    }
-
-    public int savePayment(Payment payment, int orderID) throws SQLException {
-        String insertPaymentQuery = "INSERT INTO Payment (cardNum, expiration, CVV, orderID) VALUES (?, ?, ?, ?)";
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(insertPaymentQuery, Statement.RETURN_GENERATED_KEYS)) {
-
-            preparedStatement.setString(1, payment.getCardNum());
-            preparedStatement.setString(2, payment.getExpir());
-            preparedStatement.setString(3, payment.getCvv());
-            preparedStatement.setInt(4, orderID);
-
-            int affectedRows = preparedStatement.executeUpdate();
-            if (affectedRows == 0) {
-                throw new SQLException("Creating payment failed, no rows affected.");
-            }
-
-            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1);
-                } else {
-                    throw new SQLException("Creating payment failed, no ID obtained.");
-                }
-            }
-        }
-    }
-    
-    private void closeStatement(PreparedStatement statement) {
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
     
     @Override
     public void insertPayment(Payment payment) {
@@ -721,59 +656,88 @@ public class DAOImpl implements DAO {
         }
     }
 	
+    @Override
+    public List<Payment> getAllPayments() {
+        List<Payment> payments = new ArrayList<>();
+        String sql = "SELECT * FROM Payment";
+
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int paymentID = resultSet.getInt("paymentID");
+                String cardNum = resultSet.getString("cardNum");
+                String expiration = resultSet.getString("expiration");
+                String cvv = resultSet.getString("CVV");
+                int orderID = resultSet.getInt("orderID");
+
+                Payment payment = new Payment(paymentID, cardNum, expiration, cvv, orderID);
+                payments.add(payment);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+        return payments;
+    }
+
+    @Override
+    public List<ProductOrder> getAllOrders() {
+        List<ProductOrder> orders = new ArrayList<>();
+        String sql = "SELECT * FROM ProductOrder";
+
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int customerID = resultSet.getInt("customerID");
+                String dateOfPurchase = resultSet.getString("dateOfPurchase");
+                double totalPrice = resultSet.getDouble("totalPrice");
+
+                ProductOrder order = new ProductOrder();
+                order.setId(id);
+                order.setCustomerID(customerID);
+                order.setDateOfPurchase(dateOfPurchase);
+                order.setTotalPrice(totalPrice);
+
+                orders.add(order);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+        return orders;
+    }
+    
 	@Override
-	public List<Payment> getAllPayments() {
-	    List<Payment> payments = new ArrayList<>();
-	    String sql = "SELECT * FROM Payment";
+	public void insertOrder(ProductOrder order) {
+	    String sql = "INSERT INTO ProductOrder (id, customerID, dateOfPurchase, totalPrice) VALUES (?, ?, ?, ?)";
 
 	    Connection connection = null;
 	    try {
 	        connection = getConnection();
 	        PreparedStatement statement = connection.prepareStatement(sql);
-	        ResultSet resultSet = statement.executeQuery();
-	        while (resultSet.next()) {
-	            Payment payment = new Payment();
-	            payment.setPaymentID(resultSet.getInt("paymentID"));
-	            payment.setCardNum(resultSet.getString("cardNum"));
-	            payment.setExpir(resultSet.getString("expiration"));
-	            payment.setCvv(resultSet.getString("CVV"));
-	            payment.setOrderID(resultSet.getInt("orderID"));
-	            payments.add(payment);
-	        }
+	        statement.setInt(1, order.getId());
+	        statement.setInt(2, order.getCustomerID());
+	        statement.setString(3, order.getDateOfPurchase());
+	        statement.setDouble(4, order.getTotalPrice());
+
+	        statement.executeUpdate();
 	    } catch (SQLException ex) {
 	        ex.printStackTrace();
 	    } finally {
 	        closeConnection(connection);
 	    }
-	    return payments;
 	}
-
-	@Override
-	public List<ProductOrder> getAllOrders() {
-	    List<ProductOrder> orders = new ArrayList<>();
-	    String sql = "SELECT * FROM ProductOrder";
-
-	    Connection connection = null;
-	    try {
-	        connection = getConnection();
-	        PreparedStatement statement = connection.prepareStatement(sql);
-	        ResultSet resultSet = statement.executeQuery();
-	        while (resultSet.next()) {
-	            ProductOrder order = new ProductOrder();
-	            order.setId(resultSet.getInt("id"));
-	            order.setCustomerID(resultSet.getInt("customerID"));
-	            order.setDateOfPurchase(resultSet.getString("dateOfPurchase"));
-	            order.setTotalPrice(resultSet.getDouble("totalPrice"));
-	            orders.add(order);
-	        }
-	    } catch (SQLException ex) {
-	        ex.printStackTrace();
-	    } finally {
-	        closeConnection(connection);
-	    }
-	    return orders;
-	}
-
 
 }
 

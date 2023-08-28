@@ -46,6 +46,8 @@ public class CartServlet extends HttpServlet {
                         Cart cartToUpdate = getCart(request);
                         if (cartToUpdate != null) {
                             cartToUpdate.update(productIDToUpdate, newQuantity);
+                            double totalPrice = cartToUpdate.calculateTotalPrice(); // Calculate the updated total price
+                            request.setAttribute("totalPrice", totalPrice);
                         }
                     }
                     break;

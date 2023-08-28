@@ -52,10 +52,9 @@ public interface DAO {
     Admin getAdminByEmail(String email);
     
     public void insertPayment(Payment payment);
+    public void insertOrder(ProductOrder order);
     
     public List<Payment> getAllPayments();
     public List<ProductOrder> getAllOrders();
-    
-
 
 }
