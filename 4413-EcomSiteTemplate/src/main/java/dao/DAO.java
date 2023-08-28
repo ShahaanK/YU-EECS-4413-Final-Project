@@ -32,15 +32,6 @@ public interface DAO {
 
     public List<Item> getImage();
     
-    public void insertPayment(Payment payment);
-    boolean insertCustomer(Customer customer);
-
-    // Method to insert admin information
-    boolean insertAdmin(Admin admin);
-    
-    public List<Payment> getAllPayments();
-    public List<ProductOrder> getAllOrders();
-    
     List<Item> getRandomItems(int count);
 	
 }

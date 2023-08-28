@@ -72,7 +72,7 @@ public class QueryServlet extends HttpServlet {
                 break;
             case "search":
                 searchKeyword(request, response, keyWord);
-                url = base + "/jsp/searchResult.jsp";
+                url = "/jsp/searchResult.jsp";
                 break;
             case "sortPriceHighToLow":
             	sortItemsByPriceHtL(request, response, true);
